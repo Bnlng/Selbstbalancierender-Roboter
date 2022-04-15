@@ -21,6 +21,9 @@
 <h2 id="soft">Software</h2>
 
 ```c
+#include "Wire.h"
+#include <MPU6050_light.h>
+
 //Pin Belegung
 const int linksVorwärtsPin = 3;
 const int rechtsVorwärtsPin = 6;
@@ -41,6 +44,8 @@ void setup() {
 
 void loop() {
 
+  winkel = mpu.getAngleX();
+  
   //Balancieren
   if (abs(winkel) < schwelle || winkel < -1 * maxWinkel || winkel > maxWinkel){
     analogWrite(linksRückwärtsPin, 0);
