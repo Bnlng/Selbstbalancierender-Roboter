@@ -51,3 +51,44 @@ void loop() {
   delay(10);
 }
 ```
+```c
+//Pin Belegung
+const int linksVorwärtsPin = 3;
+const int rechtsVorwärtsPin = 6;
+const int linksRückwärtsPin = 5;
+const int rechtsRückwärtsPin = 9;
+
+//Kalibrierung
+const int schwelle = 2;
+const int maxWinkel = 90;
+
+//Zwischenspeicher
+int winkel = 0;
+int outputWert = 0;
+
+void setup() {
+  
+}
+
+void loop() {
+
+  //Balancieren
+  if (abs(winkel) < schwelle || winkel < -1 * maxWinkel || winkel > maxWinkel){
+    analogWrite(linksRückwärtsPin, 0);
+    analogWrite(rechtsRückwärtsPin, 0);
+    analogWrite(linksVorwärtsPin, 0);
+    analogWrite(rechtsVorwärtsPin, 0);
+  }
+  else if (winkel < -1 * schwelle){
+    outputWert = map(abs(winkel), 0, maxWinkel, 0, 255);
+    analogWrite(linksRückwärtsPin, outputWert);
+    analogWrite(rechtsRückwärtsPin, outputWert);
+  }
+  else if (winkel > schwelle){
+    outputWert = map(winkel, 0, maxWinkel, 0, 255);
+    analogWrite(linksVorwärtsPin, outputWert);
+    analogWrite(rechtsVorwärtsPin, outputWert);
+  }
+  delay(10);
+}
+```
