@@ -17,3 +17,37 @@
 </ul>
 
 <h2 id="1">Die Idee</h2>
+
+<h2 id="soft">Software</h2>
+
+```c
+//Pin Belegung
+const int linksVorwärtsPin = 3;
+const int linksRückwärtsPin = 5;
+const int rechtsVorwärtsPin = 6;
+const int rechtsRückwärtsPin = 9;
+
+const int Multiplikator = 5;
+const int Schwelle = 1;
+
+int Winkel = 0;
+
+void setup() {
+  
+}
+
+void loop() {
+  if (Winkel < 90 || Winkel > 90){
+  }
+  else if (Winkel < 0 - Schwelle){
+    analogWrite(linksRückwärtsPin, -1 * Winkel * Multiplikator);
+    analogWrite(rechtsRückwärtsPin, -1 * Winkel * Multiplikator);
+  }
+  else if (Winkel > Schwelle){
+    analogWrite(linksRückwärtsPin, Winkel * Multiplikator);
+    analogWrite(rechtsRückwärtsPin, Winkel * Multiplikator);
+  }
+
+  delay(10);
+}
+```
