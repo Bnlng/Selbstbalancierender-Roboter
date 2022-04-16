@@ -116,3 +116,9 @@ Hierbei handelt es sich um den !!!! L298N dual H-Bridge Driver!!!!!. Dieser erm�
       }
       delay(10);
     }
+
+</details>
+
+<h3>Schritt für Schritt Erklärung</h3>
+
+<h4>1. Pins definieren</h4>
