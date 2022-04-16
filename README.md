@@ -135,3 +135,10 @@ Zuerst müssen die verwendeten Programmbibliotheken eingebunden werden. In Progr
 <h4>1. Pins definieren</h4>
 
 Der nächste Schritt ist die Definition der Pins am Arduino. Dazu werden Variablen für jede funktion erstellt, in denen die jeweilige Nummer des Pins gespeichert wird. Auf diese Art kann man auch im Nachhinein Schnell die Pinbelegung ändern ohne im Code herumsuchen zu müssen.
+
+```c
+const int linksVorwärtsPin = 3;
+const int linksRückwärtsPin = 5;
+const int rechtsVorwärtsPin = 6;
+const int rechtsRückwärtsPin = 9;
+```
