@@ -29,7 +29,6 @@ Die meisten fehrngesteuerten Fahrzeuge haben drei oder mehr Räder. Daher dachte
 <h3 id="aufbau">Aufbau</h3>
 
 
-
 <h3 id="bauteile">Verwendete Bauteile</h3>
 
 <h4>Arduino</h4>
@@ -39,7 +38,6 @@ Arduino ist eine Open Source Physical-Computing-Plattform. Es handelt sich um ei
 <h4>MPU 6050</h4>
 
 
-
 <h4>DC-Motor-Treiber</h4>
 
 Hierbei handelt es sich um den !!!! L298N dual H-Bridge Driver!!!!!. Dieser ermöglicht die Steuerung von zwei Gleichstrommotoren. Also die Änderung von Drehrichtung und Geschwindigkeit.
@@ -47,9 +45,10 @@ Hierbei handelt es sich um den !!!! L298N dual H-Bridge Driver!!!!!. Dieser erm�
 <h4>DC-Motoren</h4>
 
 
+<h4>Akkus</h4>
+
 
 <h4>3D-Gedruckte Komponenten</h4>
-
 
 
 <h3 id="schaltplan">Schaltplan</h3>
