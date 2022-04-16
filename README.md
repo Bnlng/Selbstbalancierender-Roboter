@@ -27,24 +27,36 @@
 
 //Pin Belegung
 const int linksVorwärtsPin = 3;
-const int rechtsVorwärtsPin = 6;
 const int linksRückwärtsPin = 5;
+const int rechtsVorwärtsPin = 6;
 const int rechtsRückwärtsPin = 9;
 
 //Kalibrierung
 const int schwelle = 2;
 const int maxWinkel = 90;
 
+//Kalibrierung der Motore (nur Werte zwischen 0 und 1)
+const float linksVorwärtsKali = 1;
+const float linksRückwärtsKali = 1;
+const float rechtsVorwärtsKali = 1;
+const float rechtsRückwärtsKali = 1;
+
 //Zwischenspeicher
 int winkel = 0;
 int outputWert = 0;
 
+//MPU6050
+MPU6050 mpu(Wire);
+unsigned long timer = 0;
+
 void setup() {
-  
+  Wire.begin();
+  mpu.calcOffsets(); // gyro and accelero
 }
 
 void loop() {
-
+  //MPU6050 Auslesen
+  mpu.update();
   winkel = mpu.getAngleX();
   
   //Balancieren
@@ -56,13 +68,13 @@ void loop() {
   }
   else if (winkel < -1 * schwelle){
     outputWert = map(abs(winkel), 0, maxWinkel, 0, 255);
-    analogWrite(linksRückwärtsPin, outputWert);
-    analogWrite(rechtsRückwärtsPin, outputWert);
+    analogWrite(linksRückwärtsPin, outputWert * linksRückwärtsKali);
+    analogWrite(rechtsRückwärtsPin, outputWert * rechtsRückwärtsKali);
   }
   else if (winkel > schwelle){
     outputWert = map(winkel, 0, maxWinkel, 0, 255);
-    analogWrite(linksVorwärtsPin, outputWert);
-    analogWrite(rechtsVorwärtsPin, outputWert);
+    analogWrite(linksVorwärtsPin, outputWert * linksVorwärtsKali);
+    analogWrite(rechtsVorwärtsPin, outputWert * rechtsVorwärtsKali);
   }
   delay(10);
 }
