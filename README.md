@@ -6,14 +6,14 @@
 
 <ul style="list-stlye-type:none">
     <li><a href="#einleitung">1. Einleitung</a></li>
-    <li><a href="#endergebnis">2. Das Endergebnist</a></li>
-    <li><a href="#hard">3. Hardware</a></li>
+    <li><a href="#endergebnis">2. Das Endergebnis</a></li>
+    <li><a href="#hardware">3. Hardware</a></li>
     <ul>
-        <li><a href="#aufb">3.1 Aufbau</a></li>
-        <li><a href="#teil">3.2 Verwendete Bauteile</a></li>
-        <li><a href="#schalt">3.3 Schaltplan</a></li>
+        <li><a href="#aufbau">3.1 Aufbau</a></li>
+        <li><a href="#bauteile">3.2 Verwendete Bauteile</a></li>
+        <li><a href="#schaltplan">3.3 Schaltplan</a></li>
     </ul>
-    <li><a href="#soft">2. Software</a></li>
+    <li><a href="#software">2. Software</a></li>
 </ul>
 
 <h2 id="einleitung">Einleitung</h2>
@@ -24,7 +24,40 @@ Die meisten fehrngesteuerten Fahrzeuge haben drei oder mehr Räder. Daher dachte
 
 
 
-<h2 id="soft">Software</h2>
+<h2 id="hardware">Hardware</h2>
+
+<h3 id="aufbau">Aufbau</h3>
+
+
+
+<h3 id="bauteile">Verwendete Bauteile</h3>
+
+<h4>Arduino</h4>
+
+Arduino ist eine Open Source Physical-Computing-Plattform. Es handelt sich um einen Microcontroller mit mehreren analogen und digitalen Ein und Ausgängen. Dieser ist das Herzstück unseres Projektes und für die Verarbeitung der Steuersignale und später für das Steuern des Gegnerflugzeuges und das Punktezählen zuständig.
+
+<h4>MPU 6050</h4>
+
+
+
+<h4>DC-Motor-Treiber</h4>
+
+Hierbei handelt es sich um den !!!! L298N dual H-Bridge Driver!!!!!. Dieser ermöglicht die Steuerung von zwei Gleichstrommotoren. Also die Änderung von Drehrichtung und Geschwindigkeit.
+
+<h4>DC-Motoren</h4>
+
+
+
+<h4>3D-Gedruckte Komponenten</h4>
+
+
+
+<h3 id="schaltplan">Schaltplan</h3>
+
+
+
+<h2 id="software">Software</h2>
+
 <details>
     <summary>Gesamter Sketch</summary>
     
