@@ -5,7 +5,7 @@
 <h2>Inhaltsverzeichnis</h2>
 
 <ul style="list-stlye-type:none">
-    <li><a href="#1">1. Die Idee</a></li>
+    <li><a href="#einl">1. Einleitung</a></li>
     <li><a href="#proj">2. Das Projekt</a></li>
     <li><a href="#hard">3. Hardware</a></li>
     <ul>
@@ -16,8 +16,9 @@
     <li><a href="#soft">2. Software</a></li>
 </ul>
 
-<h2 id="1">Die Idee</h2>
+<h2 id="einl">Einleitung</h2>
 
+Die meisten fehrngesteuerten Fahrzeuge haben drei oder mehr Räder. Daher dachten wir uns, dass es doch interresant wäre ein fahrzeug zu bauen, das mit nur zwei Rädern auskommt. Und ganau das haben wir dann auch gebaut. Im folgenden können sie nachlesen, wie unser Selbstbalcierender Roboter aufgebaut ist und funktioniert. Der lange weg, der zu diesem Fertigen Roboter geführt hat wurde in unseren [stndenprotokoll]https://github.com/Bnlng/Stundenprotokoll-2.-Halbjahr/()mentiert.
 
 <h2 id="soft">Software</h2>
 
