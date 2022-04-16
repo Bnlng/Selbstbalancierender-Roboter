@@ -161,6 +161,7 @@ const float linksRückwärtsKali = 1;
 const float rechtsVorwärtsKali = 1;
 const float rechtsRückwärtsKali = 1;
 ```
+
 <h4>4. Zwischenspeicher</h4>
 
 Hier werden die Variablen erstellt, in denen nachher im loop Werte zwischengespeichert werden. 
@@ -170,3 +171,5 @@ Hier werden die Variablen erstellt, in denen nachher im loop Werte zwischengespe
 int winkel = 0;
 int outputWert = 0;
 ```
+<h4>5. Setup</h4>
+Dieser Teil des Sketches wird nur ein einziges Mal beim Starten des Arduinos ausgeführt.
