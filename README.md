@@ -172,4 +172,8 @@ int winkel = 0;
 int outputWert = 0;
 ```
 <h4>5. Setup</h4>
+
 Dieser Teil des Sketches wird nur ein einziges Mal beim Starten des Arduinos ausgeführt.
+
+```c    
+```
