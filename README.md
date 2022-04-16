@@ -60,65 +60,78 @@ Hierbei handelt es sich um den !!!! L298N dual H-Bridge Driver!!!!!. Dieser erm�
 <details>
     <summary>Gesamter Sketch</summary>
     
-    #include "Wire.h"
-    #include <MPU6050_light.h>
+```c
+#include "Wire.h"
+#include <MPU6050_light.h>
 
-    //Pin Belegung
-    const int linksVorwärtsPin = 3;
-    const int linksRückwärtsPin = 5;
-    const int rechtsVorwärtsPin = 6;
-    const int rechtsRückwärtsPin = 9;
+//Pin Belegung
+const int linksVorwärtsPin = 3;
+const int linksRückwärtsPin = 5;
+const int rechtsVorwärtsPin = 6;
+const int rechtsRückwärtsPin = 9;
 
-    //Kalibrierung
-    const int schwelle = 2;
-    const int maxWinkel = 90;
+//Kalibrierung
+const int schwelle = 2;
+const int maxWinkel = 90;
 
-    //Kalibrierung der Motore (nur Werte zwischen 0 und 1)
-    const float linksVorwärtsKali = 1;
-    const float linksRückwärtsKali = 1;
-    const float rechtsVorwärtsKali = 1;
-    const float rechtsRückwärtsKali = 1;
+//Kalibrierung der Motore (nur Werte zwischen 0 und 1)
+const float linksVorwärtsKali = 1;
+const float linksRückwärtsKali = 1;
+const float rechtsVorwärtsKali = 1;
+const float rechtsRückwärtsKali = 1;
 
-    //Zwischenspeicher
-    int winkel = 0;
-    int outputWert = 0;
+//Zwischenspeicher
+int winkel = 0;
+int outputWert = 0;
 
-    //MPU6050
-    MPU6050 mpu(Wire);
-    unsigned long timer = 0;
+//MPU6050
+MPU6050 mpu(Wire);
+unsigned long timer = 0;
 
-    void setup() {
-      Wire.begin();
-      mpu.calcOffsets(); // gyro and accelero
-    }
+void setup() {
+  Wire.begin();
+  mpu.calcOffsets(); // gyro and accelero
+}
 
-    void loop() {
-      //MPU6050 Auslesen
-      mpu.update();
-      winkel = mpu.getAngleX();
-
-      //Balancieren
-      if (abs(winkel) < schwelle || winkel < -1 * maxWinkel || winkel > maxWinkel){
-        analogWrite(linksRückwärtsPin, 0);
-        analogWrite(rechtsRückwärtsPin, 0);
-        analogWrite(linksVorwärtsPin, 0);
-        analogWrite(rechtsVorwärtsPin, 0);
-      }
-      else if (winkel < -1 * schwelle){
-        outputWert = map(abs(winkel), 0, maxWinkel, 0, 255);
-        analogWrite(linksRückwärtsPin, outputWert * linksRückwärtsKali);
-        analogWrite(rechtsRückwärtsPin, outputWert * rechtsRückwärtsKali);
-      }
-      else if (winkel > schwelle){
-        outputWert = map(winkel, 0, maxWinkel, 0, 255);
-        analogWrite(linksVorwärtsPin, outputWert * linksVorwärtsKali);
-        analogWrite(rechtsVorwärtsPin, outputWert * rechtsVorwärtsKali);
-      }
-      delay(10);
-    }
-
+void loop() {
+  //MPU6050 Auslesen
+  mpu.update();
+  winkel = mpu.getAngleX();
+  
+  //Balancieren
+  if (abs(winkel) < schwelle || winkel < -1 * maxWinkel || winkel > maxWinkel){
+    analogWrite(linksRückwärtsPin, 0);
+    analogWrite(rechtsRückwärtsPin, 0);
+    analogWrite(linksVorwärtsPin, 0);
+    analogWrite(rechtsVorwärtsPin, 0);
+  }
+  else if (winkel < -1 * schwelle){
+    outputWert = map(abs(winkel), 0, maxWinkel, 0, 255);
+    analogWrite(linksRückwärtsPin, outputWert * linksRückwärtsKali);
+    analogWrite(rechtsRückwärtsPin, outputWert * rechtsRückwärtsKali);
+  }
+  else if (winkel > schwelle){
+    outputWert = map(winkel, 0, maxWinkel, 0, 255);
+    analogWrite(linksVorwärtsPin, outputWert * linksVorwärtsKali);
+    analogWrite(rechtsVorwärtsPin, outputWert * rechtsVorwärtsKali);
+  }
+  delay(10);
+} 
+```
+    
 </details>
 
 <h3>Schritt für Schritt Erklärung</h3>
 
+<h4>1. Librarys einbinden</h4>
+
+Zuerst müssen die verwendeten Programmbibliotheken eingebunden werden. In Programmbibliothek befinden sich kleine Unterprogramme, die aufgerufen werden können. Die <code>Wire.h</code> Biblieothek ermöglicht die Kommunikation mit Geräten, wie dem MP6050. Die <code>MPU6050_light</code> Bibliotek dient dem Auslesen des Gyroskop, durch sie kann der relativ einfach mit einem Befehl der Neigunswinkel ermittelt werden. Außerdem ist Sofware zur Kallibrierung des Gyroskops enthalten.
+
+```c
+#include "Wire.h"
+#include <MPU6050_light>
+```
+
 <h4>1. Pins definieren</h4>
+
+Der nächste Schritt ist die Definition der Pins am Arduino. Dazu werden Variablen für jede funktion erstellt, in denen die jeweilige Nummer des Pins gespeichert wird. Auf diese Art kann man auch im Nachhinein Schnell die Pinbelegung ändern ohne im Code herumsuchen zu müssen.
