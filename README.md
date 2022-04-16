@@ -10,7 +10,7 @@
     <li><a href="#hardware">3. Hardware</a></li>
     <ul>
         <li><a href="#aufbau">3.1 Aufbau</a></li>
-        <li><a href="#bauteile">3.2 Verwendete Bauteile</a></li>
+        <li><a href="#bauteile">3.2 Bauteile</a></li>
         <li><a href="#schaltplan">3.3 Schaltplan</a></li>
     </ul>
     <li><a href="#software">2. Software</a></li>
@@ -29,7 +29,7 @@ Die meisten fehrngesteuerten Fahrzeuge haben drei oder mehr Räder. Daher dachte
 <h3 id="aufbau">Aufbau</h3>
 
 
-<h3 id="bauteile">Verwendete Bauteile</h3>
+<h3 id="bauteile">Bauteile</h3>
 
 <h4>Arduino</h4>
 
