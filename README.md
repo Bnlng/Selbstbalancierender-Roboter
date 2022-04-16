@@ -61,7 +61,7 @@ Hierbei handelt es sich um den !!!! L298N dual H-Bridge Driver!!!!!. Dieser erm�
     <summary>Gesamter Sketch</summary>
     
 ```c
-#include "Wire.h"
+#include <Wire.h>
 #include <MPU6050_light.h>
 
 //Pin Belegung
@@ -74,7 +74,7 @@ const int rechtsRückwärtsPin = 9;
 const int schwelle = 2;
 const int maxWinkel = 90;
 
-//Kalibrierung der Motore (nur Werte zwischen 0 und 1)
+//Kalibrierung der Motoren (nur Werte zwischen 0 und 1)
 const float linksVorwärtsKali = 1;
 const float linksRückwärtsKali = 1;
 const float rechtsVorwärtsKali = 1;
@@ -123,22 +123,50 @@ void loop() {
 
 <h3>Schritt für Schritt Erklärung</h3>
 
-<h4>1. Librarys einbinden</h4>
+<h4>1. Programmbibliotheken einbinden</h4>
 
-Zuerst müssen die verwendeten Programmbibliotheken eingebunden werden. In Programmbibliothek befinden sich kleine Unterprogramme, die aufgerufen werden können. Die <code>Wire.h</code> Biblieothek ermöglicht die Kommunikation mit Geräten, wie dem MP6050. Die <code>MPU6050_light</code> Bibliotek dient dem Auslesen des Gyroskop, durch sie kann der relativ einfach mit einem Befehl der Neigunswinkel ermittelt werden. Außerdem ist Sofware zur Kallibrierung des Gyroskops enthalten.
+Zuerst müssen die verwendeten Programmbibliotheken (Libaries) eingebunden werden. In Programmbibliotheken befinden sich kleine Unterprogramme, die aufgerufen werden können. Die <code>Wire.h</code> Biblieothek ermöglicht die Kommunikation mit Geräten, wie dem MP6050. Die <code>MPU6050_light</code> Bibliotek dient dem Auslesen des Gyroskop, durch sie kann der relativ einfach mit einem Befehl der Neigunswinkel ermittelt werden. Außerdem ist Sofware zur Kallibrierung des Gyroskops enthalten.
 
 ```c
-#include "Wire.h"
+#include <Wire.h>
 #include <MPU6050_light>
 ```
 
-<h4>1. Pins definieren</h4>
+<h4>2. Pins definieren</h4>
 
-Der nächste Schritt ist die Definition der Pins am Arduino. Dazu werden Variablen für jede funktion erstellt, in denen die jeweilige Nummer des Pins gespeichert wird. Auf diese Art kann man auch im Nachhinein Schnell die Pinbelegung ändern ohne im Code herumsuchen zu müssen.
+Der nächste Schritt ist die Definition der Pins am Arduino. Bei den Pins für die Motorsteuerung werden dabei Variablen für jede Motorbewegung erstellt, in denen die jeweilige Nummer des Pins gespeichert wird. Auf diese Art kann man auch im Nachhinein Schnell die Pinbelegung ändern ohne im Code herumsuchen zu müssen.
 
 ```c
+//Pin Belegung
 const int linksVorwärtsPin = 3;
 const int linksRückwärtsPin = 5;
 const int rechtsVorwärtsPin = 6;
 const int rechtsRückwärtsPin = 9;
+```
+
+<h4>3. Kalibrieungskonstanten</h4>
+
+Als nächstes müssen die Kalibrierungskonstanten festgelegt werden. <code>schwelle</code> legt die neigung in Grad fest, die der Roboter überschreiten muss, ehe der Roboter eine ausgleichsbewegung ausführt. Wenn der Winkel <code>maxWinkel</code> überschritten wird versucht der Roboter nicht mehr die neigung Auszugleichen, da er es sowieso nicht mehr schaffen würde, wodurch sich die Räder nicht permanent drehen wenn er umfällt. <code>const</code> bedeuted, dass diese Variable im weiteren Code nicht verändert werden kann. <code>int</code> ist eine abkürzung für integer und legt den Datentyp fest, bei <code>int</code> bedeutet es, dass nur ganze Zahlen in dieser Variable gespeichert werden können. 
+
+Da die beiden Motoren bei gleicher Spannung nicht gleich schnell drehen und vorwärts sowie rückwarts zusätzlich noch einmal unterschiedlich schnell drehen müssen die veschiedenen Motoren und Bewegungsrichtungen individuel gedrosselt werden. Dazu dienen die Konstanden <code>linksVorwärtsKali</code>, <code>linksRückwärtsKali</code>, <code>rechtsVorwärtsKali</code>, <code>rechtsRückwärtsKali</code>
+
+```c
+//Kalibrierung
+const int schwelle = 2;
+const int maxWinkel = 90;
+
+//Kalibrierung der Motoren (nur Werte zwischen 0 und 1)
+const float linksVorwärtsKali = 1;
+const float linksRückwärtsKali = 1;
+const float rechtsVorwärtsKali = 1;
+const float rechtsRückwärtsKali = 1;
+```
+<h4>4. Zwischenspeicher</h4>
+
+Hier werden die Variablen erstellt, in denen nachher im loop Werte zwischengespeichert werden. 
+
+```c
+//Zwischenspeicher
+int winkel = 0;
+int outputWert = 0;
 ```
