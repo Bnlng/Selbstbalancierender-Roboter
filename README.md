@@ -178,7 +178,7 @@ void loop() {
 } 
 ```
     
-    ```c
+```c
     
 
 #include "I2Cdev.h"
