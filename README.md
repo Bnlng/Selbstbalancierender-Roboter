@@ -21,20 +21,6 @@ const int linksRueckwaertsPin = 5;
 const int rechtsVorwaertsPin = 6;
 const int rechtsRueckwaertsPin = 9;
 
-//Kalibrierung
-const int schwelle = 1;
-const int maxWinkel = 90;
-
-//Kalibrierung der Motoren (nur Werte zwischen 0 und 1)
-const float linksVorwaertsKali = 1;
-const float linksRueckwaertsKali = 1;
-const float rechtsVorwaertsKali = 1;
-const float rechtsRueckwaertsKali = 1;
-
-//Zwischenspeicher
-int winkel = 0;
-int outputWert = 0;
-
 //MPU6050
 MPU6050 mpu(Wire);
 unsigned long timer = 0;
