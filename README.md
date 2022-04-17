@@ -22,7 +22,7 @@ Die meisten ferngesteuerten Fahrzeuge haben drei oder mehr Räder. Daher dachten
 
 <h2 id="Das Projekt">Das Projekt</h2>
 Bei unserem diesjährigen Informatikprojekt handelt es sich abermals um ein Physical-Computing Projekt. Das Ergebnis ist ein 44cm Breiter und 9Kg schwerer Roboter, welcher auf seinen zwei 6,5 Zoll großen Räder graziel aufrecht balanciert. Dank den zwei leistungsstarken Lithium-Polymer-Akkus und zwei drehmomentstarken Bürstenmotoren verfügt unser Roboter über eine hohe Reichweite und üppige Leistungsreserven, welche auch den Transport von Zusätzlicher Last denkbar machen. Außerdem kann die Riemenspannung und der parallellauf der der Zahnriemenräder genau eingestellt wereden, um ein geräuch- und verschleißarmes Arbeiten zu garantieren. Die 2,4 GHz Pistolengriff-Fernsteuerung ermöglicht eine leichte aber dennoch präzise Steuerung auch in schwierigem Gelände. 
-![image]![Informatik 2  Halbjahr v24](https://user-images.githubusercontent.com/88385986/163733692-2214097c-b747-4abe-be06-6cd0aaca8c99.png)
+![Informatik 2  Halbjahr v24](https://user-images.githubusercontent.com/88385986/163733692-2214097c-b747-4abe-be06-6cd0aaca8c99.png)
 
 
 
