@@ -6,8 +6,6 @@ code zum testen:
 #include <MPU6050_light.h>
 #include <PID_v1.h>
 
-int fgh = 50;
-
 //Define Variables we'll be connecting to
 double Setpoint, Input, Output;
 
