@@ -2,6 +2,55 @@
 code zum testen:
 
 ```c
+#include <PID_v1.h>
+
+int fgh = -50;
+
+//Define Variables we'll be connecting to
+double Setpoint, Input, Output;
+
+//Define the aggressive and conservative Tuning Parameters
+double aggKp=4, aggKi=0.2, aggKd=1;
+double consKp=10, consKi=40, consKd=0.4;
+
+//Specify the links and initial tuning parameters
+PID myPID(&Input, &Output, &Setpoint, consKp, consKi, consKd, DIRECT);
+
+
+void setup() {
+  Serial.begin(115200);
+  
+  Input = fgh;
+  Setpoint = 0;
+  myPID.SetMode(AUTOMATIC);
+  myPID.SetSampleTime(10);
+  myPID.SetOutputLimits(-255, 255);  
+}
+
+void loop() {
+  //MPU6050 Auslesen
+  Serial.println(fgh);
+
+
+  Input = fgh;
+
+  myPID.Compute();
+
+  Serial.println(Output);
+
+  delay(100);
+  fgh = fgh + 1;
+}
+}
+```
+
+
+```c
+
+
+
+
+
 #include <Wire.h>
 #include <MPU6050_light.h>
 #include <PID_v1.h>
