@@ -6,7 +6,7 @@
 
 <ul style="list-stlye-type:none">
     <li><a href="#einleitung">1. Einleitung</a></li>
-    <li><a href="#endergebnis">2. Das Endergebnis</a></li>
+    <li><a href="#Das Prohekt">2. Das Projekt</a></li>
     <li><a href="#hardware">3. Hardware</a></li>
     <ul>
         <li><a href="#aufbau">3.1 Aufbau</a></li>
@@ -20,7 +20,8 @@
 
 Die meisten ferngesteuerten Fahrzeuge haben drei oder mehr Räder. Daher dachten wir uns, dass es doch interresant wäre ein fahrzeug zu bauen, welches mit nur zwei Rädern auskommt. Und ganau das haben wir dann auf der Basis eines Arduino Nanos gebaut. Im folgenden können sie nachlesen, wie unser Selbstbalcierender Roboter aufgebaut ist und funktioniert. Der lange Weg, der zu diesem fertigen Roboter geführt hat wurde in unserem [Stundenprotokoll](https://github.com/Bnlng/Stundenprotokoll-2.-Halbjahr) dokumentiert.
 
-<h2 id="endergebnis">Das Endergebnis</h2>
+<h2 id="Das Projekt">Das Projekt</h2>
+Bei unserem diesjährigen Informatikprojekt handelt es sich abermals um ein Physical-Computing Projekt. Das Ergebnis ist ein 
 
 
 
