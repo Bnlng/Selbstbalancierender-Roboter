@@ -57,7 +57,6 @@ Hierbei handelt es sich um den BTS7960B. Dieser ermöglicht die Steuerung von zw
 
 <h2 id="software">Software</h2>
 
-```
 <details>
     <summary>Gesamter Sketch</summary>
     
