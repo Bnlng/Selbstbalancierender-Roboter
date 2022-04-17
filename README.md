@@ -27,6 +27,8 @@ unsigned long timer = 0;
 
 void setup() {
   Wire.begin();
+  byte status = mpu.begin();
+  
   mpu.calcOffsets(); // gyro and accelero
   
   Input = mpu.getAngleX();
