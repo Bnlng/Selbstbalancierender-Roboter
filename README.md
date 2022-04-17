@@ -21,22 +21,31 @@ MPU6050 mpu(Wire);
 unsigned long timer = 0;
 
 void setup() {
+  Serial.println("funktioniert noch");
   Wire.begin();
+  Serial.println("funktioniert noch");
   mpu.calcOffsets(); // gyro and accelero
+  Serial.println("funktioniert noch");
   
   Input = mpu.getAngleX();
+  Serial.println("funktioniert noch");
   Setpoint = 175;
+  Serial.println("funktioniert noch");
   myPID.SetMode(AUTOMATIC);
+  Serial.println("funktioniert noch");
 }
 
 void loop() {
   //MPU6050 Auslesen
+  Serial.println("funktioniert noch");
   mpu.update();
+  Serial.println("funktioniert noch");
   Input = mpu.getAngleX();
-  
+  Serial.println("funktioniert noch");
   myPID.Compute();
+  Serial.println("funktioniert noch");
   Serial.println(Output);
-
+  Serial.println("funktioniert noch");
   delay(10);
 }
 ```
