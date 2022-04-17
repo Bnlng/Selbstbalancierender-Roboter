@@ -33,24 +33,24 @@ Bei unserem diesjährigen Informatikprojekt handelt es sich abermals um ein Phys
 <h2 id="hardware">Hardware</h2>
 
 <h3 id="bauteile">Bauteile</h3>
-- MPU6050
+<h4>MPU6050</h4>
 
-- BTS7960
+<h4>BTS7960</h4>
 
 <h4> Arduino Nano </h4>
 Arduino ist eine Open Source Physical-Computing-Plattform. Es handelt sich um einen Microcontroller mit mehreren analogen und digitalen Ein und Ausgängen. Dieser ist das Herzstück unseres Projektes und für die Verarbeitung der Steuersignale und später für das Steuern des Gegnerflugzeuges und das Punktezählen zuständig.
 
-- Fernsteuerung + Receiver
+<h4>Fernsteuerung + Receiver</h4>
 
-- LiPo Akkus
+<h4> LiPo Akkus</h4>
 
-- Motoren
+<h4> Motoren</h4>
  
-- Riemen + Riemenscheiben
+<h4> Riemen + Riemenscheiben</h4>
 
-- Räder
+<h4> Räder</h4>
 
-- Baustahl
+<h4> Baustahl</h4>
 
 <h3 id="aufbau">Aufbau</h3>
 
