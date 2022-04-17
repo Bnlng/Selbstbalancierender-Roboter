@@ -6,7 +6,7 @@
 
 <ul style="list-stlye-type:none">
     <li><a href="#einleitung">1. Einleitung</a></li>
-    <li><a href="#Das Prohekt">2. Das Projekt</a></li>
+    <li><a href="#Das Projekt">2. Das Projekt</a></li>
     <li><a href="#hardware">3. Hardware</a></li>
     <ul>
         <li><a href="#aufbau">3.1 Aufbau</a></li>
