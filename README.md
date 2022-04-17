@@ -32,10 +32,21 @@ Bei unserem diesjährigen Informatikprojekt handelt es sich abermals um ein Phys
 
 <h2 id="hardware">Hardware</h2>
 
+<h3 id="bauteile">Bauteile</h3>
+- MPU6050
+- BTS7960
+- Arduino Nano
+- Fernsteuerung + Receiver
+- LiPo Akkus
+- Motoren
+- Riemen + Riemenscheiben
+- Räder
+- Baustahl
+
 <h3 id="aufbau">Aufbau</h3>
 
 
-<h3 id="bauteile">Bauteile</h3>
+
 
 <h4>Arduino</h4>
 
