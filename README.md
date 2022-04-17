@@ -37,7 +37,8 @@ Bei unserem diesjährigen Informatikprojekt handelt es sich abermals um ein Phys
 
 - BTS7960
 
-- Arduino Nano
+<h4> Arduino Nano </h4>
+Arduino ist eine Open Source Physical-Computing-Plattform. Es handelt sich um einen Microcontroller mit mehreren analogen und digitalen Ein und Ausgängen. Dieser ist das Herzstück unseres Projektes und für die Verarbeitung der Steuersignale und später für das Steuern des Gegnerflugzeuges und das Punktezählen zuständig.
 
 - Fernsteuerung + Receiver
 
