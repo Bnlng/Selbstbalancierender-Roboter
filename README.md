@@ -6,6 +6,115 @@ code zum testen:
 #include <MPU6050_light.h>
 #include <PID_v1.h>
 
+int fgh = 50;
+
+//Define Variables we'll be connecting to
+double Setpoint, Input, Output;
+
+//Define the aggressive and conservative Tuning Parameters
+double aggKp=4, aggKi=0.2, aggKd=1;
+double consKp=10, consKi=40, consKd=0.4;
+
+//Specify the links and initial tuning parameters
+PID myPID(&Input, &Output, &Setpoint, consKp, consKi, consKd, DIRECT);
+
+//MPU6050
+MPU6050 mpu(Wire);
+unsigned long timer = 0;
+
+void setup() {
+  Serial.begin(115200);
+  
+  Wire.begin();
+  mpu.calcOffsets();
+
+  
+  Input = mpu.getAngleX();
+  Serial.println("funktioniert noch");
+  Setpoint = 0;
+  myPID.SetMode(AUTOMATIC);
+  myPID.SetSampleTime(10);
+  myPID.SetOutputLimits(-255, 255);  
+}
+
+void loop() {
+  //MPU6050 Auslesen
+  mpu.update();
+  Input = mpu.getAngleX();
+
+  myPID.Compute();
+
+  Serial.println(Output);
+
+  delay(10);
+}
+```
+
+```c
+
+
+
+
+
+
+
+
+int fgh = 50;
+
+//Define Variables we'll be connecting to
+double Setpoint, Input, Output;
+
+//Define the aggressive and conservative Tuning Parameters
+double aggKp=4, aggKi=0.2, aggKd=1;
+double consKp=10, consKi=40, consKd=0.4;
+
+//Specify the links and initial tuning parameters
+PID myPID(&Input, &Output, &Setpoint, consKp, consKi, consKd, DIRECT);
+
+
+void setup() {
+  Serial.begin(115200);
+  
+  Input = fgh;
+  Serial.println("funktioniert noch");
+  Setpoint = 100;
+  Serial.println("funktioniert noch");
+  myPID.SetMode(AUTOMATIC);
+  myPID.SetSampleTime(10);
+  myPID.SetOutputLimits(-255, 255);  
+}
+
+void loop() {
+  //MPU6050 Auslesen
+  Serial.println(fgh);
+
+
+  Input = fgh;
+
+  myPID.Compute();
+
+  Serial.println(Output);
+
+  delay(100);
+  fgh = fgh + 1;
+}
+```
+
+```c
+
+
+
+
+
+
+
+
+
+
+#include <Wire.h>
+#include <MPU6050_light.h>
+#include <PID_v1.h>
+
 //Define Variables we'll be connecting to
 double Setpoint, Input, Output;
 
