@@ -41,7 +41,6 @@ void loop() {
   delay(100);
   fgh = fgh + 1;
 }
-}
 ```
 
 
