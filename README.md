@@ -2,6 +2,88 @@
 code zum testen:
 
 ```c
+#include <Wire.h>
+#include <MPU6050_light.h>
+#include <PID_v1.h>
+
+//Define Variables we'll be connecting to
+double Setpoint, Input, Output;
+
+//Define the aggressive and conservative Tuning Parameters
+double aggKp=4, aggKi=0.2, aggKd=1;
+double consKp=10, consKi=40, consKd=0.4;
+
+//Specify the links and initial tuning parameters
+PID myPID(&Input, &Output, &Setpoint, consKp, consKi, consKd, DIRECT);
+
+//Pin Belegung
+const int linksVorwaertsPin = 3;
+const int linksRueckwaertsPin = 5;
+const int rechtsVorwaertsPin = 6;
+const int rechtsRueckwaertsPin = 9;
+
+//Kalibrierung
+const int schwelle = 1;
+const int maxWinkel = 90;
+
+//Kalibrierung der Motoren (nur Werte zwischen 0 und 1)
+const float linksVorwaertsKali = 1;
+const float linksRueckwaertsKali = 1;
+const float rechtsVorwaertsKali = 1;
+const float rechtsRueckwaertsKali = 1;
+
+//Zwischenspeicher
+int winkel = 0;
+int outputWert = 0;
+
+//MPU6050
+MPU6050 mpu(Wire);
+unsigned long timer = 0;
+
+void setup() {
+  Wire.begin();
+  mpu.calcOffsets(); // gyro and accelero
+  
+  Input = mpu.getAngleX();
+  Setpoint = 0;
+  myPID.SetMode(AUTOMATIC);
+  myPID.SetOutputLimits(-255, 255); 
+}
+
+void loop() {
+  //MPU6050 Auslesen
+  mpu.update();
+  
+  Input = mpu.getAngleX();
+  
+  myPID.Compute();
+  
+  //Balancieren
+  if (Output > 0){
+    analogWrite(linksVorwaertsPin, 0);
+    analogWrite(rechtsVorwaertsPin, 0);
+    
+    analogWrite(linksRueckwaertsPin, Output);
+    analogWrite(rechtsRueckwaertsPin, Output);
+  }
+  else if (Output < 0){
+    analogWrite(linksRueckwaertsPin, 0);
+    analogWrite(rechtsRueckwaertsPin, 0);
+    
+    analogWrite(linksVorwaertsPin, -1 * Output);
+    analogWrite(rechtsVorwaertsPin, -1 * Output);
+  }
+  else{
+    analogWrite(linksRueckwaertsPin, 0);
+    analogWrite(rechtsRueckwaertsPin, 0);
+    analogWrite(linksVorwaertsPin, 0);
+    analogWrite(rechtsVorwaertsPin, 0);
+  }
+}
+```
+
+
+```c
 #include <PID_v1.h>
 
 int fgh = -50;
