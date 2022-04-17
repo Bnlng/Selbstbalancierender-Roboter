@@ -1,5 +1,74 @@
 <h1>Selbstbalancierender Roboter - Projektseite</h1>
+code zum testen:
 
+```c
+#include "I2Cdev.h"
+#include <PID_v1.h> //From https://github.com/br3ttb/Arduino-PID-Library/blob/master/PID_v1.h
+#include "MPU6050_6Axis_MotionApps20.h" //https://github.com/jrowberg/i2cdevlib/tree/master/Arduino/MPU6050
+
+double setpoint= 175; //set the value when the bot is perpendicular to ground using serial monitor. 
+//Read the project documentation on circuitdigest.com to learn how to set these values
+double Kp = 10; //Set this first
+double Kd = 0.4; //Set this secound
+double Ki = 40; //Finally set this 
+/******End of values setting*********/
+
+double input, output;
+PID pid(&input, &output, &setpoint, Kp, Ki, Kd, DIRECT);
+
+void setup() {
+    
+    mpu.initialize();
+
+    mpu.setXGyroOffset(220);
+    mpu.setYGyroOffset(76);
+    mpu.setZGyroOffset(-85);
+    mpu.setZAccelOffset(1688); 
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  pid.Compute();   
+        
+  //Print the value of Input and Output on serial monitor to check how it is working.
+  Serial.print(input); Serial.print(" =>"); Serial.println(output);
+               
+  if (input>150 && input<200){//If the Bot is falling 
+          
+    if (output>0) //Falling towards front 
+    Forward(); //Rotate the wheels forward 
+    else if (output<0) //Falling towards back
+    Reverse(); //Rotate the wheels backward 
+  }
+  else //If Bot not falling
+  Stop(); //Hold the wheels still
+
+}
+
+void Forward() //Code to rotate the wheel forward 
+{
+    analogWrite(6,output);
+    analogWrite(9,0);
+    analogWrite(10,output);
+    analogWrite(11,0);
+}
+
+void Reverse() //Code to rotate the wheel Backward  
+{
+    analogWrite(6,0);
+    analogWrite(9,output*-1);
+    analogWrite(10,0);
+    analogWrite(11,output*-1); 
+}
+
+void Stop() //Code to stop both the wheels
+{
+    analogWrite(6,0);
+    analogWrite(9,0);
+    analogWrite(10,0);
+    analogWrite(11,0); 
+}
+```
 <h3>Von Ben und Martin, 12bc</h3>
 
 <h2>Inhaltsverzeichnis</h2>
