@@ -34,13 +34,21 @@ Bei unserem diesjährigen Informatikprojekt handelt es sich abermals um ein Phys
 
 <h3 id="bauteile">Bauteile</h3>
 - MPU6050
+
 - BTS7960
+
 - Arduino Nano
+
 - Fernsteuerung + Receiver
+
 - LiPo Akkus
+
 - Motoren
+ 
 - Riemen + Riemenscheiben
+
 - Räder
+
 - Baustahl
 
 <h3 id="aufbau">Aufbau</h3>
