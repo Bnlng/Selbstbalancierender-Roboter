@@ -24,7 +24,7 @@ void setup() {
   Wire.begin();
   mpu.calcOffsets(); // gyro and accelero
   
-  input = mpu.getAngleX();
+  Input = mpu.getAngleX();
   Setpoint = 175;
   myPID.SetMode(AUTOMATIC);
 }
@@ -32,10 +32,10 @@ void setup() {
 void loop() {
   //MPU6050 Auslesen
   mpu.update();
-  input = mpu.getAngleX();
+  Input = mpu.getAngleX();
   
   myPID.Compute();
-  Serial.println(output);
+  Serial.println(Output);
 
   delay(10);
 }
