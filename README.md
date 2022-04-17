@@ -2,71 +2,61 @@
 code zum testen:
 
 ```c
-#include "I2Cdev.h"
-#include <PID_v1.h> //From https://github.com/br3ttb/Arduino-PID-Library/blob/master/PID_v1.h
-#include "MPU6050_6Axis_MotionApps20.h" //https://github.com/jrowberg/i2cdevlib/tree/master/Arduino/MPU6050
+#include <Wire.h>
+#include <MPU6050_light.h>
+#include <PID_v1.h>
 
-double setpoint= 175; //set the value when the bot is perpendicular to ground using serial monitor. 
-//Read the project documentation on circuitdigest.com to learn how to set these values
-double Kp = 10; //Set this first
-double Kd = 0.4; //Set this secound
-double Ki = 40; //Finally set this 
-/******End of values setting*********/
+//Define Variables we'll be connecting to
+double Setpoint, Input, Output;
 
-double input, output;
-PID pid(&input, &output, &setpoint, Kp, Ki, Kd, DIRECT);
+//Define the aggressive and conservative Tuning Parameters
+double aggKp=4, aggKi=0.2, aggKd=1;
+double consKp=10, consKi=40, consKd=0.4;
+
+//Specify the links and initial tuning parameters
+PID myPID(&Input, &Output, &Setpoint, consKp, consKi, consKd, DIRECT);
+
+//Pin Belegung
+const int linksVorwaertsPin = 3;
+const int linksRueckwaertsPin = 5;
+const int rechtsVorwaertsPin = 6;
+const int rechtsRueckwaertsPin = 9;
+
+//Kalibrierung
+const int schwelle = 1;
+const int maxWinkel = 90;
+
+//Kalibrierung der Motoren (nur Werte zwischen 0 und 1)
+const float linksVorwaertsKali = 1;
+const float linksRueckwaertsKali = 1;
+const float rechtsVorwaertsKali = 1;
+const float rechtsRueckwaertsKali = 1;
+
+//Zwischenspeicher
+int winkel = 0;
+int outputWert = 0;
+
+//MPU6050
+MPU6050 mpu(Wire);
+unsigned long timer = 0;
 
 void setup() {
-    
-    mpu.initialize();
-
-    mpu.setXGyroOffset(220);
-    mpu.setYGyroOffset(76);
-    mpu.setZGyroOffset(-85);
-    mpu.setZAccelOffset(1688); 
+  Wire.begin();
+  mpu.calcOffsets(); // gyro and accelero
+  
+  input = mpu.getAngleX();
+  Setpoint = 175;
+  myPID.SetMode(AUTOMATIC);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  pid.Compute();   
-        
-  //Print the value of Input and Output on serial monitor to check how it is working.
-  Serial.print(input); Serial.print(" =>"); Serial.println(output);
-               
-  if (input>150 && input<200){//If the Bot is falling 
-          
-    if (output>0) //Falling towards front 
-    Forward(); //Rotate the wheels forward 
-    else if (output<0) //Falling towards back
-    Reverse(); //Rotate the wheels backward 
-  }
-  else //If Bot not falling
-  Stop(); //Hold the wheels still
+  //MPU6050 Auslesen
+  mpu.update();
+  
+  input = mpu.getAngleX();
+  Serial.println(output);
 
-}
-
-void Forward() //Code to rotate the wheel forward 
-{
-    analogWrite(6,output);
-    analogWrite(9,0);
-    analogWrite(10,output);
-    analogWrite(11,0);
-}
-
-void Reverse() //Code to rotate the wheel Backward  
-{
-    analogWrite(6,0);
-    analogWrite(9,output*-1);
-    analogWrite(10,0);
-    analogWrite(11,output*-1); 
-}
-
-void Stop() //Code to stop both the wheels
-{
-    analogWrite(6,0);
-    analogWrite(9,0);
-    analogWrite(10,0);
-    analogWrite(11,0); 
+  delay(10);
 }
 ```
 <h3>Von Ben und Martin, 12bc</h3>
