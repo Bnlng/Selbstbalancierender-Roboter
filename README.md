@@ -10,7 +10,6 @@ code zum testen:
 double Setpoint, Input, Output;
 
 //Define the aggressive and conservative Tuning Parameters
-double aggKp=4, aggKi=0.2, aggKd=1;
 double consKp=10, consKi=40, consKd=0.4;
 
 //Specify the links and initial tuning parameters
