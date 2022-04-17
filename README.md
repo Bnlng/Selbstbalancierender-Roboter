@@ -57,36 +57,6 @@ Hierbei handelt es sich um den BTS7960B. Dieser ermöglicht die Steuerung von zw
 
 <h2 id="software">Software</h2>
 
-
-void setup() {
-  Wire.begin();
-  mpu.calcOffsets(); // gyro and accelero
-}
-
-void loop() {
-  //MPU6050 Auslesen
-  mpu.update();
-  winkel = mpu.getAngleX();
-  
-  //Balancieren
-  if (abs(winkel) < schwelle || winkel < -1 * maxWinkel || winkel > maxWinkel){
-    analogWrite(linksRueckwaertsPin, 0);
-    analogWrite(rechtsRueckwaertsPin, 0);
-    analogWrite(linksVorwaertsPin, 0);
-    analogWrite(rechtsVorwaertsPin, 0);
-  }
-  else if (winkel < -1 * schwelle){
-    outputWert = map(abs(winkel), 0, maxWinkel, 0, 155);
-    analogWrite(linksRueckwaertsPin, outputWert * linksRueckwaertsKali + 100);
-    analogWrite(rechtsRueckwaertsPin, outputWert * rechtsRueckwaertsKali +100);
-  }
-  else if (winkel > schwelle){
-    outputWert = map(winkel, 0, maxWinkel, 0, 155);
-    analogWrite(linksVorwaertsPin, outputWert * linksVorwaertsKali + 100);
-    analogWrite(rechtsVorwaertsPin, outputWert * rechtsVorwaertsKali + 100);
-  }
-  delay(10);
-}
 ```
 <details>
     <summary>Gesamter Sketch</summary>
