@@ -26,6 +26,8 @@ Bei unserem diesjährigen Informatikprojekt handelt es sich abermals um ein Phys
 
 
 
+
+
 <h2 id="hardware">Hardware</h2>
 
 <h3 id="aufbau">Aufbau</h3>
