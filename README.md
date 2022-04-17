@@ -179,11 +179,7 @@ void loop() {
 ```
     
     ```c
-    /*Arduino Self Balancing Robot
- * Code by: B.Aswinth Raj
- * Build on top of Lib: https://github.com/jrowberg/i2cdevlib/tree/master/Arduino/MPU6050
- * Website: circuitdigest.com 
- */
+    
 
 #include "I2Cdev.h"
 #include <PID_v1.h> //From https://github.com/br3ttb/Arduino-PID-Library/blob/master/PID_v1.h
@@ -379,6 +375,7 @@ void Stop() //Code to stop both the wheels
     analogWrite(11,0); 
     Serial.print("S");
 }
+    
 ```
     
 </details>
