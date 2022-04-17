@@ -56,7 +56,66 @@ Hierbei handelt es sich um den BTS7960B. Dieser ermöglicht die Steuerung von zw
 
 
 <h2 id="software">Software</h2>
+Sketch überarbeitet:
 
+```c
+#include <Wire.h>
+#include <MPU6050_light.h>
+
+//Pin Belegung
+const int linksVorwaertsPin = 3;
+const int linksRueckwaertsPin = 5;
+const int rechtsVorwaertsPin = 6;
+const int rechtsRueckwaertsPin = 9;
+
+//Kalibrierung
+const int schwelle = 0;
+const int maxWinkel = 90;
+
+//Kalibrierung der Motoren (nur Werte zwischen 0 und 1)
+const float linksVorwaertsKali = 1;
+const float linksRueckwaertsKali = 1;
+const float rechtsVorwaertsKali = 1;
+const float rechtsRueckwaertsKali = 1;
+
+//Zwischenspeicher
+int winkel = 0;
+int outputWert = 0;
+
+//MPU6050
+MPU6050 mpu(Wire);
+unsigned long timer = 0;
+
+void setup() {
+  Wire.begin();
+  mpu.calcOffsets(); // gyro and accelero
+}
+
+void loop() {
+  //MPU6050 Auslesen
+  mpu.update();
+  winkel = mpu.getAngleX();
+  
+  //Balancieren
+  if (abs(winkel) < schwelle || winkel < -1 * maxWinkel || winkel > maxWinkel){
+    analogWrite(linksRueckwaertsPin, 0);
+    analogWrite(rechtsRueckwaertsPin, 0);
+    analogWrite(linksVorwaertsPin, 0);
+    analogWrite(rechtsVorwaertsPin, 0);
+  }
+  else if (winkel < -1 * schwelle){
+    outputWert = map(abs(winkel), 0, maxWinkel, 0, 155);
+    analogWrite(linksRueckwaertsPin, outputWert * linksRueckwaertsKali);
+    analogWrite(rechtsRueckwaertsPin, outputWert * rechtsRueckwaertsKali);
+  }
+  else if (winkel > schwelle){
+    outputWert = map(winkel, 0, maxWinkel, 0, 155);
+    analogWrite(linksVorwaertsPin, outputWert * linksVorwaertsKali + 100);
+    analogWrite(rechtsVorwaertsPin, outputWert * rechtsVorwaertsKali + 100);
+  }
+  delay(10);
+}
+```
 <details>
     <summary>Gesamter Sketch</summary>
     
