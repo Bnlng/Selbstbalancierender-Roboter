@@ -34,6 +34,7 @@ void loop() {
   mpu.update();
   input = mpu.getAngleX();
   
+  myPID.Compute();
   Serial.println(output);
 
   delay(10);
