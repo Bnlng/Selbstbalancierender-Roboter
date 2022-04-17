@@ -105,8 +105,8 @@ void loop() {
   }
   else if (winkel < -1 * schwelle){
     outputWert = map(abs(winkel), 0, maxWinkel, 0, 155);
-    analogWrite(linksRueckwaertsPin, outputWert * linksRueckwaertsKali);
-    analogWrite(rechtsRueckwaertsPin, outputWert * rechtsRueckwaertsKali);
+    analogWrite(linksRueckwaertsPin, outputWert * linksRueckwaertsKali + 100);
+    analogWrite(rechtsRueckwaertsPin, outputWert * rechtsRueckwaertsKali +100);
   }
   else if (winkel > schwelle){
     outputWert = map(winkel, 0, maxWinkel, 0, 155);
