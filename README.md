@@ -221,7 +221,7 @@ PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 
 `double Kp=10, Ki=40, Kd=0.4;` erstellt die Variablen zur Feinjustierung der PID Steurung und weist ihnen Werte zu. Die Werte, Die für Kp, Ki und Kd eingetragen werdenn mussten experimentell ermittelt werden. 
 
-
+`PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);` verlinkt die Variablen mit dem PID Steuerung, sodass wenn sie Später geändert werden diese änderung auch in der PID Bibliothek vorgenommen wird. Außerdem werden die eben genannten Parameter an die PID Bibliothek weitergegeben.
 
 <h4>3. Pins definieren</h4>
 
