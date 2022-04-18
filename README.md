@@ -90,6 +90,8 @@ Hierbei handelt es sich um den BTS7960B. Dieser ermöglicht die Steuerung von zw
 
 <h2 id="software">Software</h2>
 
+Die Programmiersprache von Arduino basiert auf c++, verfügt aber über zusätzliche befehle, genaueres über die Sprache kann hier nachgelesen werden. Der gesamte Sketch wird im Folgenden Schritt für Schritt erklärt, kann aber auch in den Dateien des Repositorys ohne Erklärungen und mit Erklärungen eingesehen und heruntergeladen werden.
+
 <details>
     <summary>Gesamter Sketch</summary>
     
@@ -176,9 +178,20 @@ void loop() {
 
 Zuerst müssen die verwendeten Programmbibliotheken (Libaries) eingebunden werden. In Programmbibliotheken befinden sich kleine Unterprogramme, die aufgerufen werden können. Die <code>Wire.h</code> Biblieothek ermöglicht die Kommunikation mit Geräten, wie dem MP6050. Die <code>MPU6050_light</code> Bibliotek dient dem Auslesen des Gyroskop, durch sie kann der relativ einfach mit einem Befehl der Neigunswinkel ermittelt werden. Außerdem ist Sofware zur Kallibrierung des Gyroskops enthalten. Die <code>PID_v1.h></code> Bibliothek dient der verwendung eines PID Algorythmusses ([Wikipedia](https://de.wikipedia.org/wiki/Regler#PID-Regler)). Mit der PID Regelung lässt sich ermitteln, was die Motoren tun sollen, wenn der Roboter kippt. Dahinter stehen ausgeklügelte Formeln die eine Überkonpensation verhindern und eine schnelle Rückkehr z
 
-<h4>2. Pins definieren</h4>
+<h4>2. PID Steuerung</h4>
 
-Der nächste Schritt ist die Definition der Pins am Arduino. Bei den Pins für die Motorsteuerung werden dabei Variablen für jede Motorbewegung erstellt, in denen die jeweilige Nummer des Pins gespeichert wird. Auf diese Art kann man auch im Nachhinein Schnell die Pinbelegung ändern ohne im Code herumsuchen zu müssen.
+```c
+//Variablen um den PID Algorythmus zu Steuern
+double Setpoint, Input, Output;
+
+//Parameter zur Feinjustierung des PID Algorythmus
+double Kp=10, Ki=40, Kd=0.4;
+
+//Verlinkt die Variablen mit dem PID Algorythmus und gibt die Parameter weiter
+PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
+```
+
+<h4>3. Pins definieren</h4>
 
 ```c
 //Pin Belegung
@@ -188,36 +201,68 @@ const int rechtsVorwärtsPin = 6;
 const int rechtsRückwärtsPin = 9;
 ```
 
-<h4>3. Kalibrieungskonstanten</h4>
-
-Als nächstes müssen die Kalibrierungskonstanten festgelegt werden. <code>schwelle</code> legt die neigung in Grad fest, die der Roboter überschreiten muss, ehe der Roboter eine ausgleichsbewegung ausführt. Wenn der Winkel <code>maxWinkel</code> überschritten wird versucht der Roboter nicht mehr die neigung Auszugleichen, da er es sowieso nicht mehr schaffen würde, wodurch sich die Räder nicht permanent drehen wenn er umfällt. <code>const</code> bedeuted, dass diese Variable im weiteren Code nicht verändert werden kann. <code>int</code> ist eine abkürzung für integer und legt den Datentyp fest, bei <code>int</code> bedeutet es, dass nur ganze Zahlen in dieser Variable gespeichert werden können. 
-
-Da die beiden Motoren bei gleicher Spannung nicht gleich schnell drehen und vorwärts sowie rückwarts zusätzlich noch einmal unterschiedlich schnell drehen müssen die veschiedenen Motoren und Bewegungsrichtungen individuel gedrosselt werden. Dazu dienen die Konstanden <code>linksVorwärtsKali</code>, <code>linksRückwärtsKali</code>, <code>rechtsVorwärtsKali</code>, <code>rechtsRückwärtsKali</code>
-
-```c
-//Kalibrierung
-const int schwelle = 2;
-const int maxWinkel = 90;
-
-//Kalibrierung der Motoren (nur Werte zwischen 0 und 1)
-const float linksVorwärtsKali = 1;
-const float linksRückwärtsKali = 1;
-const float rechtsVorwärtsKali = 1;
-const float rechtsRückwärtsKali = 1;
-```
+Der nächste Schritt ist die Definition der Pins am Arduino. Bei den Pins für die Motorsteuerung werden dabei Variablen für jede Motorbewegung erstellt, in denen die jeweilige Nummer des Pins gespeichert wird. Auf diese Art kann man auch im Nachhinein Schnell die Pinbelegung ändern ohne im Code herumsuchen zu müssen.
 
 <h4>4. Zwischenspeicher</h4>
-
-Hier werden die Variablen erstellt, in denen nachher im loop Werte zwischengespeichert werden. 
 
 ```c
 //Zwischenspeicher
 int winkel = 0;
 int outputWert = 0;
 ```
-<h4>5. Setup</h4>
+
+Hier werden die Variablen erstellt, in denen nachher im loop Werte zwischengespeichert werden. 
+
+<h4>5. setup()</h4>
+
+```c
+void setup() {
+  //MPU6050 starten
+  Wire.begin();
+  byte status = mpu.begin();
+  mpu.calcOffsets(); // gyro and accelero
+  
+  //PID algorythmus starten
+  Input = mpu.getAngleX();
+  Setpoint = 0;
+  myPID.SetMode(AUTOMATIC);
+  myPID.SetOutputLimits(-255, 255); 
+}
+```
 
 Dieser Teil des Sketches wird nur ein einziges Mal beim Starten des Arduinos ausgeführt.
 
-```c    
+<h4>6. loop()</h4>
+
+```c
+void loop() {
+  //MPU6050 Auslesen
+  mpu.update();
+  
+  //Winkel mit dem PID algorythmus zu einem Output wert für die Motoren umrechnen
+  Input = mpu.getAngleX();
+  myPID.Compute();
+  
+  //Balancieren
+  if (Output > 0){
+    analogWrite(linksVorwaertsPin, 0);
+    analogWrite(rechtsVorwaertsPin, 0);
+    
+    analogWrite(linksRueckwaertsPin, Output);
+    analogWrite(rechtsRueckwaertsPin, Output);
+  }
+  else if (Output < 0){
+    analogWrite(linksRueckwaertsPin, 0);
+    analogWrite(rechtsRueckwaertsPin, 0);
+    
+    analogWrite(linksVorwaertsPin, -1 * Output);
+    analogWrite(rechtsVorwaertsPin, -1 * Output);
+  }
+  else{
+    analogWrite(linksRueckwaertsPin, 0);
+    analogWrite(rechtsRueckwaertsPin, 0);
+    analogWrite(linksVorwaertsPin, 0);
+    analogWrite(rechtsVorwaertsPin, 0);
+  }
+}
 ```
