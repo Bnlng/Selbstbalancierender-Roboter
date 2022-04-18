@@ -98,13 +98,13 @@ Hierbei handelt es sich um den BTS7960B. Dieser ermöglicht die Steuerung von zw
 #include <MPU6050_light.h>
 #include <PID_v1.h>
 
-//Define Variables we'll be connecting to
+//Variablen um den PID Algorythmus zu Steuern
 double Setpoint, Input, Output;
 
-//Define Tuning Parameters
+//Parameter zur Feinjustierung des PID Algorythmus
 double Kp=10, Ki=40, Kd=0.4;
 
-//Specify the links and initial tuning parameters
+//Verlinkt die Variablen mit dem PID Algorythmus und gibt die Parameter weiter
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 
 //Pin Belegung
