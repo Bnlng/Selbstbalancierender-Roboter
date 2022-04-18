@@ -227,6 +227,7 @@ Die `PID_v1.h` Bibliothek dient der verwendung einer PID Regelung ([Wikipedia](h
 
 Die `PID_v1.h` Bibliothek kann unter https://github.com/br3ttb/Arduino-PID-Libraryheruntergeladen werden.
 
+
 <h4>2. PID Steuerung</h4>
 
 ```c
@@ -234,7 +235,7 @@ Die `PID_v1.h` Bibliothek kann unter https://github.com/br3ttb/Arduino-PID-Libra
 double Setpoint, Input, Output;
 
 //Parameter zur Feinjustierung der PID Steuerung
-double Kp=10, Ki=40, Kd=0.4;
+double Kp=4, Ki=4.5, Kd=0.01;
 
 //Verlinkt die Variablen mit der PID Steuerung und gibt die Parameter weiter
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
@@ -246,8 +247,8 @@ PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 
 `PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);` verlinkt die Variablen mit dem PID Steuerung, sodass wenn sie Später geändert werden diese änderung auch in der PID Bibliothek vorgenommen wird. Außerdem werden die eben genannten Parameter an die PID Bibliothek weitergegeben.
 
-<h4>3. Pins definieren</h4>
 
+<h4>3. Pins definieren</h4>
 
 ```c
 //Pin Belegung
@@ -259,6 +260,7 @@ const int rechtsRückwärtsPin = 9;
 
 Der nächste Schritt ist die Definition der Pins am Arduino. Bei den Pins für die Motorsteuerung werden dabei Variablen für jede Motorbewegung erstellt, in denen die jeweilige Nummer des Pins gespeichert wird. Auf diese Art kann man auch im Nachhinein Schnell die Pinbelegung ändern ohne im Code herumsuchen zu müssen.
 
+
 <h4>4. MPU6050</h4>
 
 ```c
@@ -266,7 +268,6 @@ Der nächste Schritt ist die Definition der Pins am Arduino. Bei den Pins für d
 MPU6050 mpu(Wire);
 unsigned long timer = 0;
 ```
-
 
 
 <h4>5. setup()</h4>
