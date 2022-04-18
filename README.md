@@ -208,15 +208,15 @@ const int rechtsRückwärtsPin = 9;
 
 Der nächste Schritt ist die Definition der Pins am Arduino. Bei den Pins für die Motorsteuerung werden dabei Variablen für jede Motorbewegung erstellt, in denen die jeweilige Nummer des Pins gespeichert wird. Auf diese Art kann man auch im Nachhinein Schnell die Pinbelegung ändern ohne im Code herumsuchen zu müssen.
 
-<h4>4. Zwischenspeicher</h4>
+<h4>4. MPU6050</h4>
 
 ```c
-//Zwischenspeicher
-int winkel = 0;
-int outputWert = 0;
+//MPU6050
+MPU6050 mpu(Wire);
+unsigned long timer = 0;
 ```
 
-Hier werden die Variablen erstellt, in denen nachher im loop Werte zwischengespeichert werden. 
+
 
 <h4>5. setup()</h4>
 
