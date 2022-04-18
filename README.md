@@ -168,12 +168,13 @@ void loop() {
 
 <h4>1. Programmbibliotheken einbinden</h4>
 
-Zuerst müssen die verwendeten Programmbibliotheken (Libaries) eingebunden werden. In Programmbibliotheken befinden sich kleine Unterprogramme, die aufgerufen werden können. Die <code>Wire.h</code> Biblieothek ermöglicht die Kommunikation mit Geräten, wie dem MP6050. Die <code>MPU6050_light</code> Bibliotek dient dem Auslesen des Gyroskop, durch sie kann der relativ einfach mit einem Befehl der Neigunswinkel ermittelt werden. Außerdem ist Sofware zur Kallibrierung des Gyroskops enthalten.
-
 ```c
 #include <Wire.h>
 #include <MPU6050_light>
+#include <PID_v1.h>
 ```
+
+Zuerst müssen die verwendeten Programmbibliotheken (Libaries) eingebunden werden. In Programmbibliotheken befinden sich kleine Unterprogramme, die aufgerufen werden können. Die <code>Wire.h</code> Biblieothek ermöglicht die Kommunikation mit Geräten, wie dem MP6050. Die <code>MPU6050_light</code> Bibliotek dient dem Auslesen des Gyroskop, durch sie kann der relativ einfach mit einem Befehl der Neigunswinkel ermittelt werden. Außerdem ist Sofware zur Kallibrierung des Gyroskops enthalten. Die <code>PID_v1.h></code> Bibliothek dient der verwendung eines PID Algorythmusses ([Wikipedia](https://de.wikipedia.org/wiki/Regler#PID-Regler)). Mit der PID Regelung lässt sich ermitteln, was die Motoren tun sollen, wenn der Roboter kippt. Dahinter stehen ausgeklügelte Formeln die eine Überkonpensation verhindern und eine schnelle Rückkehr z
 
 <h4>2. Pins definieren</h4>
 
