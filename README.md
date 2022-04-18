@@ -269,6 +269,7 @@ MPU6050 mpu(Wire);
 unsigned long timer = 0;
 ```
 
+Hier werden die Startvorrausetzungen für die MPU6050 Libary getroffen. `MPU6050 mpu(Wire);` wird benötigt, damit die MPU6050 Libary über die Wire Libary informationen aus dem MPU6050 auslesen kann. Durch `unsigned long timer = 0;` kann mit der Varible timer jederzeit ausgelesen werden wie lange (in Millisekunden) der Arduino schon läuft, das ist für die MPU6050 Libary wichtig
 
 <h4>5. setup()</h4>
 
