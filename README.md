@@ -83,6 +83,9 @@ Hierbei handelt es sich um den BTS7960B. Dieser ermöglicht die Steuerung von zw
 
 <h3 id="schaltplan">Schaltplan</h3>
 
+![Schaltplan](https://user-images.githubusercontent.com/88385986/163812863-497f506b-6a97-4490-a7d8-ff0faf9adc85.png)
+
+
 
 
 <h2 id="software">Software</h2>
