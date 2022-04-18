@@ -206,7 +206,7 @@ void loop() {
 Zuerst müssen die verwendeten Programmbibliotheken (Libaries) eingebunden werden. In Programmbibliotheken befinden sich kleine Unterprogramme, die aufgerufen werden können. 
 <br>
 <br>
-`Wire.h` ermöglicht die Kommunikation des Arduinos mit Geräten, wie dem MP6050. Diese Bibliothek ist Arduino standartmäßig installiert.
+`Wire.h` ermöglicht die Kommunikation des Arduinos über I²C ([Wikipedia](https://de.wikipedia.org/wiki/I%C2%B2C)) mit Geräten, wie dem MP6050. Diese Bibliothek ist in der Arduino IDE standartmäßig installiert.
 <br>
 <br>
 Die `MPU6050_light` Bibliotek dient dem Auslesen des Gyroskop, durch sie kann der relativ einfach mit einem Befehl der Neigunswinkel ermittelt werden. Außerdem ist Sofware zur Kallibrierung des Gyroskops enthalten. Sie kann unter https://github.com/rfetick/MPU6050_light runtergeladen werden.
