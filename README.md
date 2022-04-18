@@ -110,7 +110,7 @@ Die Programmiersprache von Arduino basiert auf c++, verfügt aber über zusätzl
 double Setpoint, Input, Output;
 
 //Parameter zur Feinjustierung der PID Steuerung
-double Kp=10, Ki=40, Kd=0.4;
+double Kp=4, Ki=4.5, Kd=0.01;
 
 //Verlinkt die Variablen mit dem PID Steuerung und gibt die Parameter weiter
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
@@ -142,6 +142,7 @@ void setup() {
   Input = mpu.getAngleX();
   Setpoint = 0;
   myPID.SetMode(AUTOMATIC);
+  myPID.SetSampleTime(10);
   myPID.SetOutputLimits(-255, 255); 
 }
 
@@ -203,14 +204,28 @@ void loop() {
 ```
 
 Zuerst müssen die verwendeten Programmbibliotheken (Libaries) eingebunden werden. In Programmbibliotheken befinden sich kleine Unterprogramme, die aufgerufen werden können. 
-
+<br>
+<br>
 `Wire.h` ermöglicht die Kommunikation des Arduinos mit Geräten, wie dem MP6050. Diese Bibliothek ist Arduino standartmäßig installiert.
-
+<br>
+<br>
 Die `MPU6050_light` Bibliotek dient dem Auslesen des Gyroskop, durch sie kann der relativ einfach mit einem Befehl der Neigunswinkel ermittelt werden. Außerdem ist Sofware zur Kallibrierung des Gyroskops enthalten. Sie kann unter https://github.com/rfetick/MPU6050_light runtergeladen werden.
-
+<br>
+<br>
 Mit `ServoInput.h` lassen sich die Eingabewerte der Fehrnbedienung auslesen. Die Bibliothek kann unter https://github.com/dmadison/ServoInput heruntergeladen werden.
+<br>
+<br>
+Die `PID_v1.h` Bibliothek dient der verwendung einer PID Regelung ([Wikipedia](https://de.wikipedia.org/wiki/Regler#PID-Regler)). PID steht für Proportional, Integral und Derivative (deutsch: Derivative = Differential/Ableitung). Mit dieser Regelung lässt sich ermitteln, was die Motoren tun sollen, wenn der Roboter kippt. Sie funktioniert über folgender Formel: 
 
-Die `PID_v1.h` Bibliothek dient der verwendung einer PID Regelung ([Wikipedia](https://de.wikipedia.org/wiki/Regler#PID-Regler)). Mit der PID Regelung lässt sich ermitteln, was die Motoren tun sollen, wenn der Roboter kippt. Dahinter stehen ausgeklügelte Formeln die eine Überkonpensation verhindern und eine schnelle Rückkehr. Diese Bibliothek kann unter https://github.com/br3ttb/Arduino-PID-Libraryheruntergeladen werden.
+![Unbenannt](https://user-images.githubusercontent.com/88386307/163874219-80f2882a-4b0c-49ac-bdf5-f394ae132c90.JPG)
+
+**Proportional:** e(t) ist der Momentane abstand zum Optimum (aufrechter Roboter). Kp, Ki und Kd sind faktoren, die manuell eingestellt werden müssen, mit ihnen lässt sich das ganze feinjustieren.
+
+**Integral:** Kp * e(t) verursacht eine Proportionale reaktion, d.h. dass die doppelte entfernung vom optimalwinkel zu einer doppelt so großen reaktion führt. Ki * Integral von e(t) addiert alle vorherigen Werte von e(t), was dazu führt, dass wenn der Roboter lange in einer Neigungsrichtung bleibt die Ausgleichsreaktion mit der Zeit immer stärker wird.
+
+**Differential:** Der letzte Teil dient als eine art Vorhersage darüber was als nächstes Passiert. Hiermit wird verhindert, dass der Roboter überkompensiert, wass eine Schnelle Oszilliation zur Folge hätte.
+
+Die `PID_v1.h` Bibliothek kann unter https://github.com/br3ttb/Arduino-PID-Libraryheruntergeladen werden.
 
 <h4>2. PID Steuerung</h4>
 
@@ -267,6 +282,7 @@ void setup() {
   Input = mpu.getAngleX();
   Setpoint = 0;
   myPID.SetMode(AUTOMATIC);
+  myPID.SetSampleTime(10);
   myPID.SetOutputLimits(-255, 255); 
 }
 ```
