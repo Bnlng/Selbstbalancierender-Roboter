@@ -197,12 +197,20 @@ void loop() {
 
 ```c
 #include <Wire.h>
-#include <MPU6050_light>
+#include <MPU6050_light.h>
 #include <ServoInput.h>
 #include <PID_v1.h>
 ```
 
-Zuerst müssen die verwendeten Programmbibliotheken (Libaries) eingebunden werden. In Programmbibliotheken befinden sich kleine Unterprogramme, die aufgerufen werden können. Die <code>Wire.h</code> Biblieothek ermöglicht die Kommunikation mit Geräten, wie dem MP6050. Die <code>MPU6050_light</code> Bibliotek dient dem Auslesen des Gyroskop, durch sie kann der relativ einfach mit einem Befehl der Neigunswinkel ermittelt werden. Außerdem ist Sofware zur Kallibrierung des Gyroskops enthalten. Die <code>PID_v1.h></code> Bibliothek dient der verwendung eines PID Algorythmusses ([Wikipedia](https://de.wikipedia.org/wiki/Regler#PID-Regler)). Mit der PID Regelung lässt sich ermitteln, was die Motoren tun sollen, wenn der Roboter kippt. Dahinter stehen ausgeklügelte Formeln die eine Überkonpensation verhindern und eine schnelle Rückkehr z
+Zuerst müssen die verwendeten Programmbibliotheken (Libaries) eingebunden werden. In Programmbibliotheken befinden sich kleine Unterprogramme, die aufgerufen werden können. 
+
+`Wire.h` ermöglicht die Kommunikation des Arduinos mit Geräten, wie dem MP6050. Diese Bibliothek ist Arduino standartmäßig installiert.
+
+Die `MPU6050_light` Bibliotek dient dem Auslesen des Gyroskop, durch sie kann der relativ einfach mit einem Befehl der Neigunswinkel ermittelt werden. Außerdem ist Sofware zur Kallibrierung des Gyroskops enthalten. Sie kann unter https://github.com/rfetick/MPU6050_light runtergeladen werden.
+
+Mit `ServoInput.h` lassen sich die Eingabewerte der Fehrnbedienung auslesen. Die Bibliothek kann unter https://github.com/dmadison/ServoInput heruntergeladen werden.
+
+Die `PID_v1.h` Bibliothek dient der verwendung einer PID Regelung ([Wikipedia](https://de.wikipedia.org/wiki/Regler#PID-Regler)). Mit der PID Regelung lässt sich ermitteln, was die Motoren tun sollen, wenn der Roboter kippt. Dahinter stehen ausgeklügelte Formeln die eine Überkonpensation verhindern und eine schnelle Rückkehr. Diese Bibliothek kann unter https://github.com/br3ttb/Arduino-PID-Libraryheruntergeladen werden.
 
 <h4>2. PID Steuerung</h4>
 
@@ -219,7 +227,7 @@ PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 
 `double Setpoint, Input, Output;` erstellt Variablen, die später im Code noch gebraucht werden, um die PID Steuerung zu verwenden.
 
-`double Kp=10, Ki=40, Kd=0.4;` erstellt die Variablen zur Feinjustierung der PID Steurung und weist ihnen Werte zu. Die Werte, Die für Kp, Ki und Kd eingetragen werdenn mussten experimentell ermittelt werden. 
+`double Kp=10, Ki=40, Kd=0.4;` erstellt die Variablen zur Feinjustierung der PID Steurung und weist ihnen Werte zu. Die Werte, Die für Kp, Ki und Kd eingetragen werdenn mussten experimentell ermittelt werden. Das Experimentelle ermitteln läuft so ab, dass zuerst alle Werte auf Null gesetzt werden und dann Kp in kleinen schritten erhöht wird, biss der Roboter fast von alleine stehen bleibt, aber noch stark hin und her schwankt. Dann erhöht man Ki solange, bis der Roboter von alleine Stehenbleibt, aber noch stark hin und her wakelt. Dann erhöht man Kd langsam, um das starke hin und her wakeln zu unterbinden. Falls es dann noch noch immer nicht ruhig steht, dann dreht man noch etwas weiter an den Werten herum, bis es funktioniert.
 
 `PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);` verlinkt die Variablen mit dem PID Steuerung, sodass wenn sie Später geändert werden diese änderung auch in der PID Bibliothek vorgenommen wird. Außerdem werden die eben genannten Parameter an die PID Bibliothek weitergegeben.
 
