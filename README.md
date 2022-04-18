@@ -105,13 +105,13 @@ Die Programmiersprache von Arduino basiert auf c++, verfügt aber über zusätzl
 #include <MPU6050_light.h>
 #include <PID_v1.h>
 
-//Variablen um den PID Algorythmus zu Steuern
+//Variablen für die PID Steuerung
 double Setpoint, Input, Output;
 
-//Parameter zur Feinjustierung des PID Algorythmus
+//Parameter zur Feinjustierung der PID Steuerung
 double Kp=10, Ki=40, Kd=0.4;
 
-//Verlinkt die Variablen mit dem PID Algorythmus und gibt die Parameter weiter
+//Verlinkt die Variablen mit dem PID Steuerung und gibt die Parameter weiter
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 
 //Pin Belegung
@@ -130,7 +130,7 @@ void setup() {
   byte status = mpu.begin();
   mpu.calcOffsets(); // gyro and accelero
   
-  //PID algorythmus starten
+  //PID Steuerung starten
   Input = mpu.getAngleX();
   Setpoint = 0;
   myPID.SetMode(AUTOMATIC);
@@ -141,7 +141,7 @@ void loop() {
   //MPU6050 Auslesen
   mpu.update();
   
-  //Winkel mit dem PID algorythmus zu einem Output wert für die Motoren umrechnen
+  //Winkel mit der PID Steuerung zu einem Output wert für die Motoren umrechnen
   Input = mpu.getAngleX();
   myPID.Compute();
   
@@ -186,13 +186,13 @@ Zuerst müssen die verwendeten Programmbibliotheken (Libaries) eingebunden werde
 <h4>2. PID Steuerung</h4>
 
 ```c
-//Variablen um den PID Algorythmus zu Steuern
+//Variablen für die PID Steuerung
 double Setpoint, Input, Output;
 
-//Parameter zur Feinjustierung des PID Algorythmus
+//Parameter zur Feinjustierung der PID Steuerung
 double Kp=10, Ki=40, Kd=0.4;
 
-//Verlinkt die Variablen mit dem PID Algorythmus und gibt die Parameter weiter
+//Verlinkt die Variablen mit der PID Steuerung und gibt die Parameter weiter
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 ```
 
@@ -227,7 +227,7 @@ void setup() {
   byte status = mpu.begin();
   mpu.calcOffsets(); // gyro and accelero
   
-  //PID algorythmus starten
+  //PID Steuerung starten
   Input = mpu.getAngleX();
   Setpoint = 0;
   myPID.SetMode(AUTOMATIC);
@@ -244,7 +244,7 @@ void loop() {
   //MPU6050 Auslesen
   mpu.update();
   
-  //Winkel mit dem PID algorythmus zu einem Output wert für die Motoren umrechnen
+  //Winkel mit der PID Steuerung zu einem Output Wert für die Motoren umrechnen
   Input = mpu.getAngleX();
   myPID.Compute();
   
