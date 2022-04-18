@@ -103,6 +103,7 @@ Die Programmiersprache von Arduino basiert auf c++, verfügt aber über zusätzl
 ```c
 #include <Wire.h>
 #include <MPU6050_light.h>
+#include <ServoInput.h>
 #include <PID_v1.h>
 
 //Variablen für die PID Steuerung
@@ -124,6 +125,13 @@ const int rechtsRueckwaertsPin = 9;
 MPU6050 mpu(Wire);
 unsigned long timer = 0;
 
+//fehrnsteuerung
+const int ThrottleSignalPin = 3;  // MUST be interrupt-capable!
+const int ThrottlePulseMin = 1000;  // microseconds (us)
+const int ThrottlePulseMax = 2000;  // Ideal values for your servo can be found with the "Calibration" example
+
+ServoInputPin<ThrottleSignalPin> throttle(ThrottlePulseMin, ThrottlePulseMax);
+
 void setup() {
   //MPU6050 starten
   Wire.begin();
@@ -138,6 +146,18 @@ void setup() {
 }
 
 void loop() {
+  
+  //Fehrnsteuerung
+  int throttlePercent = throttle.map(100, -100);
+
+  if (throttlePercent > 10) {
+    setpoint = map(throttlePercent, 10, 100, 0, 4);
+  }
+
+  if (throttlePercent < -10) {
+    setpoint = map(throttlePercent, -10, -100, 0, -4);
+  }
+  
   //MPU6050 Auslesen
   mpu.update();
   
@@ -178,6 +198,7 @@ void loop() {
 ```c
 #include <Wire.h>
 #include <MPU6050_light>
+#include <ServoInput.h>
 #include <PID_v1.h>
 ```
 
@@ -196,7 +217,14 @@ double Kp=10, Ki=40, Kd=0.4;
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 ```
 
+`double Setpoint, Input, Output;` erstellt Variablen, die später im Code noch gebraucht werden, um die PID Steuerung zu verwenden.
+
+`double Kp=10, Ki=40, Kd=0.4;` erstellt die Variablen zur Feinjustierung der PID Steurung und weist ihnen Werte zu. Die Werte, Die für Kp, Ki und Kd eingetragen werdenn mussten experimentell ermittelt werden. 
+
+
+
 <h4>3. Pins definieren</h4>
+
 
 ```c
 //Pin Belegung
