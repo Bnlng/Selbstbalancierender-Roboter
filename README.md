@@ -96,60 +96,70 @@ Hierbei handelt es sich um den BTS7960B. Dieser ermöglicht die Steuerung von zw
 ```c
 #include <Wire.h>
 #include <MPU6050_light.h>
+#include <PID_v1.h>
+
+//Define Variables we'll be connecting to
+double Setpoint, Input, Output;
+
+//Define Tuning Parameters
+double Kp=10, Ki=40, Kd=0.4;
+
+//Specify the links and initial tuning parameters
+PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 
 //Pin Belegung
-const int linksVorwärtsPin = 3;
-const int linksRückwärtsPin = 5;
-const int rechtsVorwärtsPin = 6;
-const int rechtsRückwärtsPin = 9;
-
-//Kalibrierung
-const int schwelle = 2;
-const int maxWinkel = 90;
-
-//Kalibrierung der Motoren (nur Werte zwischen 0 und 1)
-const float linksVorwärtsKali = 1;
-const float linksRückwärtsKali = 1;
-const float rechtsVorwärtsKali = 1;
-const float rechtsRückwärtsKali = 1;
-
-//Zwischenspeicher
-int winkel = 0;
-int outputWert = 0;
+const int linksVorwaertsPin = 3;
+const int linksRueckwaertsPin = 5;
+const int rechtsVorwaertsPin = 6;
+const int rechtsRueckwaertsPin = 9;
 
 //MPU6050
 MPU6050 mpu(Wire);
 unsigned long timer = 0;
 
 void setup() {
+  //MPU6050 starten
   Wire.begin();
+  byte status = mpu.begin();
   mpu.calcOffsets(); // gyro and accelero
+  
+  //PID algorythmus starten
+  Input = mpu.getAngleX();
+  Setpoint = 0;
+  myPID.SetMode(AUTOMATIC);
+  myPID.SetOutputLimits(-255, 255); 
 }
 
 void loop() {
   //MPU6050 Auslesen
   mpu.update();
-  winkel = mpu.getAngleX();
+  
+  //Winkel mit dem PID algorythmus zu einem Output wert für die Motoren umrechnen
+  Input = mpu.getAngleX();
+  myPID.Compute();
   
   //Balancieren
-  if (abs(winkel) < schwelle || winkel < -1 * maxWinkel || winkel > maxWinkel){
-    analogWrite(linksRückwärtsPin, 0);
-    analogWrite(rechtsRückwärtsPin, 0);
-    analogWrite(linksVorwärtsPin, 0);
-    analogWrite(rechtsVorwärtsPin, 0);
+  if (Output > 0){
+    analogWrite(linksVorwaertsPin, 0);
+    analogWrite(rechtsVorwaertsPin, 0);
+    
+    analogWrite(linksRueckwaertsPin, Output);
+    analogWrite(rechtsRueckwaertsPin, Output);
   }
-  else if (winkel < -1 * schwelle){
-    outputWert = map(abs(winkel), 0, maxWinkel, 0, 255);
-    analogWrite(linksRückwärtsPin, outputWert * linksRückwärtsKali);
-    analogWrite(rechtsRückwärtsPin, outputWert * rechtsRückwärtsKali);
+  else if (Output < 0){
+    analogWrite(linksRueckwaertsPin, 0);
+    analogWrite(rechtsRueckwaertsPin, 0);
+    
+    analogWrite(linksVorwaertsPin, -1 * Output);
+    analogWrite(rechtsVorwaertsPin, -1 * Output);
   }
-  else if (winkel > schwelle){
-    outputWert = map(winkel, 0, maxWinkel, 0, 255);
-    analogWrite(linksVorwärtsPin, outputWert * linksVorwärtsKali);
-    analogWrite(rechtsVorwärtsPin, outputWert * rechtsVorwärtsKali);
+  else{
+    analogWrite(linksRueckwaertsPin, 0);
+    analogWrite(rechtsRueckwaertsPin, 0);
+    analogWrite(linksVorwaertsPin, 0);
+    analogWrite(rechtsVorwaertsPin, 0);
   }
-  delay(10);
-} 
+}
 ```
 
 </details>
