@@ -290,6 +290,8 @@ Dieser Teil des Sketches wird nur ein einziges Mal beim Starten des Arduinos aus
 
 <h4>3. loop()</h4>
 
+Der Folgende code befindet sich in einer Schleife und wird daher immer wieder ausgeführt, bis der Arduino Ausgeschaltet wird.
+
 ```c
 void loop() {
   //MPU6050 Auslesen
@@ -322,3 +324,9 @@ void loop() {
   }
 }
 ```
+
+`mpu.update();` Gibt der MPU6050 Libary den Befehl  zu aktualisieren. `Input = mpu.getAngleX();` liest den aktuellen Winkel des Roboters aus und speichert diesen in der Variable Input, sodass die PID Regelung damit arbeiten kann. `myPID.Compute();` sorgt dann dafür, dass die PID Bibliothek mit dem Eben neu ermittelten Wert einen neuen Outputwert für die Motoren Brechnet.
+
+Dieser Teil gibt die Outputwerte, die eben berechnet worden sind an die Motoren weiter. Die erste `if` Anweisung überprüft, ob Output größer als null ist. Wenn das der Fall ist, dann schaltetet der Roboter die beiden Pins die die Vorwärtsbewegung Steuern Mit der intensität gleich Output an. Die Pins, die die Motoren rückwärts drehen lassen werden ausgeschaltet.
+
+Die `else if` Anweisung überprüft, ob Output kleiner als 0 ist. Diesmal werden dann die Pins die die Rückw
