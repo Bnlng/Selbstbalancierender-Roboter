@@ -207,7 +207,7 @@ Die `PID_v1.h` Bibliothek dient der verwendung einer PID Regelung ([Wikipedia](h
 
 **Differential:** Der letzte Teil dient als eine art Vorhersage darüber was als nächstes Passiert. Hiermit wird verhindert, dass der Roboter überkompensiert, wass eine Schnelle Oszilliation zur Folge hätte.
 
-Die `PID_v1.h` Bibliothek kann unter https://github.com/br3ttb/Arduino-PID-Libraryheruntergeladen werden.
+Die `PID_v1.h` Bibliothek kann unter https://github.com/br3ttb/Arduino-PID-Library heruntergeladen werden.
 
 
 <h4>1.2 Variablen für die PID Regelung</h4>
@@ -272,7 +272,7 @@ void setup() {
 }
 ```
 
-Dieser Teil des Sketches wird nur ein einziges Mal beim Starten des Arduinos ausgeführt.
+Dieser Teil des Sketches wird nur ein einziges Mal beim Starten des Arduinos ausgeführt. `Wire.begin();`
 
 <h4>3. loop()</h4>
 
