@@ -28,7 +28,7 @@ Video des Roboters in Action:
 <br>
 <br>
 
-[![IMAGE ALT TEXT HERE](https://media.discordapp.net/attachments/836887245268844594/966054547468464199/Untitled.jpg?width=1202&height=676)](https://www.youtube.com/watch?v=AILGkgTYkng)
+[![IMAGE ALT TEXT HERE](https://media.discordapp.net/attachments/836887245268844594/966081099140853790/Untitled.png?width=1202&height=676)](https://www.youtube.com/watch?v=AILGkgTYkng)
 
 
 
