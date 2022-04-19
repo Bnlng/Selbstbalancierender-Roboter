@@ -701,3 +701,42 @@ int throttlePercent = throttle.map(-100, 100);
  }
 }
 ```
+Der Folgende Teil des Codes sorgt dafür, dass der setpoint, also der Winkel welcher der Roboter versucht zu halten, abhängig vom Eingangssignal der Fernsteuerrung verändert wird. Bei Vollgas wird der Winkel um 5 Grad in die Entsprechende Richtung verschoben. Dies versetzt den Roboter in eine Schräglage, welche eine Vorwärtsbewegung zur Folge hat. 
+
+```c
+	int throttlePercent = throttle.map(100, -100);
+
+if (throttlePercent > 1) {
+  setpoint = map(throttlePercent, 1, 100, 175, 170);
+}
+
+if (throttlePercent < -1) {
+  setpoint = map(throttlePercent, -1, -100, 175, 180);
+}
+if (throttlePercent < 1 && throttlePercent > -1) {
+  setpoint = 175;
+}
+```
+
+Der Folgende Codeabschnitt sorgt für die Lenkbarkeit. Die Variablen "left" und "right" sind hierbei Faktoren, welche später im Code mit dem jeweils linken oder rechten Motorcontroller Output multipliziert werden. Die Pins "leftIn" und "rightIn" sind jene Pins an welchen der Arduino Nr. 2 angeschlossen ist.
+
+```c
+ if (digitalRead(leftIn) == HIGH) {
+     right = 1;
+    left = 2;
+
+  }
+   
+  if (digitalRead(rightIn) == HIGH) {
+   left = 1;
+     right = 2;
+    
+   }
+
+
+ if (digitalRead(leftIn) == LOW && digitalRead(rightIn) == LOW) {
+   left = 1;
+     right = 1;
+    
+   }
+```
