@@ -33,9 +33,9 @@ Video des Roboters in Action:
 
 
 
+Video des CAD-Modelles:
 
-
-[![IMAGE ALT TEXT HERE](https://cdn.discordapp.com/attachments/836887245268844594/966054547468464199/Untitled.jpg)](https://www.youtube.com/watch?v=AILGkgTYkng)
+[![IMAGE ALT TEXT HERE](https://cdn.discordapp.com/attachments/836887245268844594/966054547468464199/Untitled.jpg)](https://youtu.be/wmyFSYbn0NQ)
 
 
 
