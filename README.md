@@ -85,6 +85,14 @@ Der Rahmen wurde Hauptsächlich aus Flachstählen gefertigt. Der einfache Bausta
 
 <h3> Erklärung der Elektrik: </h3>
 
+Die zwei Motorcontroller werden parallel an den Akku geschaltet. Ein Controller hat jeweils zwei Input Pins. Wenn an dem einen eine Spannung anliegt dreht sich der Motor in die eine Richtung, wenn an dem anderen Input eine Spannung anliegt in die andere Richtung. Die Leistung der Motoren hängt von der höhe der Inputspannung ab (0V-5V).
+Wichtig ist, dass der Arduino und die Motorcontroller am gleichen Ground angeschlossen sind, also das gleich 0-Potenzial haben.
+<br>
+Das MPU6050 Modul übermittelt die Daten über einen I2C Datenbus. Die Leitungen hierfür sind an den Pins A4 und A5 angeschlossen. Das Modul wird mit 5V Spannung versorgt.
+<br>
+Die Spannungsversorgung für den Arduino wird durch eine 9V Blockbatterie gewährleistet.
+
+
 
 <h2 id="software">Software</h2>
 
