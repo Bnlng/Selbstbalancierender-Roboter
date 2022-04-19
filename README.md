@@ -327,6 +327,58 @@ Die `else if` Anweisung überprüft, ob Output kleiner als 0 ist. Wenn das der F
 
 Dieser Code funktioniert zwar, allerdings ist der Roboter dabei nicht ganz so stabil wie wir uns es erhofft hatten. Daher haben wir auch mal einen Fertigen Code aus dem Internet getestet, welcher wie sich herausstellte etwas besser funktionierte. Daher haben wir Vor diesen Code für die Vorstellung im Unterricht zu verwenden. Da wir den Roboter auch noch fernsteuern wollten haben wir in den Code aus dem Internet zusätzlich eine Funktion zur Fernsteuerung eingebaut. Hierbei mussten wir feststellen, dass das implementieren von eigenem Code in fremder Software recht kompliziert ist. Trotzdem haben wir es am Ende geschafft.
 
+    <h3> Funktion der Fernsteuerung </h3>
+    Die Output Signale der Fernsteuerung sind leider keine einfachen Spannungswerte, sondern sogenannte Interrupt-Signale. Diese Funtionieiren über einen periodischen Spannungsanstieg. Dieser Spannungsanstieg ist, wenn an der Fernbedinung kein Regler betätigt wird, 1,5 ms lang. Für einen Vollen Ausschlag eines Regler steigt diese Zeit auf 2ms und für einen Ausschlag in die andere Rcihtung, sinkt sie auf 1ms. Für die Umrechnung dieser Signale in einfache Zahlenwerte haben wir eine Libary genutzt. Im folgend ist der Code dieser Libary zu sehen.
+    ```c
+    #include <ServoInput.h>
+
+
+// Steering Setup
+const int SteeringSignalPin = 2;  // MUST be interrupt-capable!
+const int SteeringPulseMin = 1000;  // microseconds (us)
+const int SteeringPulseMax = 2000;  // Ideal values for your servo can be found with the "Calibration" example
+
+ServoInputPin<SteeringSignalPin> steering(SteeringPulseMin, SteeringPulseMax);
+
+// Throttle Setup
+const int ThrottleSignalPin = 3;  // MUST be interrupt-capable!
+const int ThrottlePulseMin = 1000;  // microseconds (us)
+const int ThrottlePulseMax = 2000;  // Ideal values for your servo can be found with the "Calibration" example
+
+ServoInputPin<ThrottleSignalPin> throttle(ThrottlePulseMin, ThrottlePulseMax);
+
+void setup() {
+	Serial.begin(115200);
+
+	
+	}
+}
+
+void loop() {
+	Serial.print("RC - ");
+
+	float steeringAngle = 90.0 - steering.getAngle();  // returns 0 - 180, subtracting from 90 to center at "0" and invert for "normal" steering
+	Serial.print("Steering: ");
+	Serial.print(steeringAngle);
+	Serial.print("deg");
+
+	Serial.print(" | ");  // separator
+
+	int throttlePercent = throttle.map(-100, 100);  // remap to a percentage both forward and reverse
+	Serial.print("Throttle: ");
+	Serial.print(throttlePercent);
+	Serial.print("% ");
+
+	if (throttlePercent >= 0) {
+		Serial.print("(Forward)");
+	}
+	else {
+		Serial.print("(Reverse)");
+	}
+
+	Serial.println();
+}
+    ```
 <details>
     <summary>Code</summary>
 
