@@ -194,7 +194,9 @@ void loop() {
 
 <h3>Schritt für Schritt Erklärung</h3>
 
-<h4>1. Programmbibliotheken einbinden</h4>
+<h4>1. Variablen Deklarieren</h4>
+
+<h4>1.1 Libaries einbinden</h4>
 
 ```c
 #include <Wire.h>
@@ -228,7 +230,7 @@ Die `PID_v1.h` Bibliothek dient der verwendung einer PID Regelung ([Wikipedia](h
 Die `PID_v1.h` Bibliothek kann unter https://github.com/br3ttb/Arduino-PID-Libraryheruntergeladen werden.
 
 
-<h4>2. PID Steuerung</h4>
+<h4>1.2 Variablen für die PID Steuerung</h4>
 
 ```c
 //Variablen für die PID Steuerung
@@ -248,7 +250,7 @@ PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 `PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);` verlinkt die Variablen mit dem PID Steuerung, sodass wenn sie Später geändert werden diese änderung auch in der PID Bibliothek vorgenommen wird. Außerdem werden die eben genannten Parameter an die PID Bibliothek weitergegeben.
 
 
-<h4>3. Pins definieren</h4>
+<h4>1.3 Pins definieren</h4>
 
 ```c
 //Pin Belegung
@@ -261,7 +263,7 @@ const int rechtsRückwärtsPin = 9;
 Der nächste Schritt ist die Definition der Pins am Arduino. Bei den Pins für die Motorsteuerung werden dabei Variablen für jede Motorbewegung erstellt, in denen die jeweilige Nummer des Pins gespeichert wird. Auf diese Art kann man auch im Nachhinein Schnell die Pinbelegung ändern ohne im Code herumsuchen zu müssen.
 
 
-<h4>4. MPU6050</h4>
+<h4>1.4 MPU6050</h4>
 
 ```c
 //MPU6050
@@ -271,7 +273,7 @@ unsigned long timer = 0;
 
 Hier werden die Startvorrausetzungen für die MPU6050 Libary getroffen. `MPU6050 mpu(Wire);` wird benötigt, damit die MPU6050 Libary über die Wire Libary informationen aus dem MPU6050 auslesen kann. Durch `unsigned long timer = 0;` kann mit der Varible timer jederzeit ausgelesen werden wie lange (in Millisekunden) der Arduino schon läuft, das ist für die MPU6050 Libary wichtig
 
-<h4>5. setup()</h4>
+<h4>2. setup()</h4>
 
 ```c
 void setup() {
@@ -291,7 +293,7 @@ void setup() {
 
 Dieser Teil des Sketches wird nur ein einziges Mal beim Starten des Arduinos ausgeführt.
 
-<h4>6. loop()</h4>
+<h4>3. loop()</h4>
 
 ```c
 void loop() {
