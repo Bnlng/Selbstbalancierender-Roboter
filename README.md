@@ -740,3 +740,16 @@ Der Folgende Codeabschnitt sorgt für die Lenkbarkeit. Die Variablen "left" und 
     
    }
 ```
+
+Das Folgende ist die Sequenz die Aufgerufen wird, wenn der Roboter nach vorne korrigieren soll. Hier sind die Variablen "left" und "right" zu sehen.
+Wenn eine der Variablen = 2 ist, so dreht sich das eine Rad schneller als das andere, was eine Kurvenfahrt zur Folge hat.
+
+```c
+void Forward() 
+{
+    analogWrite(6,output*left);
+    analogWrite(9,0);
+    analogWrite(10,output*right);
+    analogWrite(11,0);
+}
+```
