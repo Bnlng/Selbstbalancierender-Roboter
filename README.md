@@ -73,11 +73,13 @@ Die Motoren für unserern Roboter stammen aus der Altmetallkiste einer Gabelstab
 Es handelt sich um einfache Bürsten-Gleichstrommotoren.
  
 <h4> Riemen + Riemenscheiben</h4>
-
+Die Riemen bzw. Zahnscheiben folgen der Normung HTD15. Sie sind 15mm Breit und speziell für hohe Drehmomente gemacht. Die Riemenscheiben sind 3D-Gedruckt. Die Riemenscheibe am Rad hat 72 Zähne und das am Motor 24. Daraus ergibt sich ein Übersetzungsverhältnis von 1:3. Das Drehmoment am Rad verdreifacht sich, während die Drehzahl um den Faktor 3 kleiner wird.
 
 <h4> Räder</h4>
+ Die Felgen der Räder wurden aus PVC selbst an der Drehbank angefertigt. Hierbei wurden an beiden Seiten Lagersitze für die Kugellager eingearbeitet. An der Außenseite ist jeweils eine Aluminiumscheibe fest geschraubt, welche die Vollgummireifen am Runterrutschen hindert. 
 
 <h4> Baustahl</h4>
+Der Rahmen wurde Hauptsächlich aus Flachstählen gefertigt. Der einfache Baustahl ist preisgünstig und leicht zu bearbeiten und zu verschweißen. Die Schweißarbeiten wurden mit einem Fülldrahtschweißgerät ausgeführt. Die Räder sind an einer Ø15mm Stahlachse befestigt, an dessen Ende M6 Innengewinde eingearbeitet wurden. Die Schrauben in diesen verhindern ein Abrutschen der Räder. Zwischen Rädausßenseite und SChraubenkopf wurden Axiallager angebracht, um die Reibung zu verringern.
 
 <h3 id="aufbau">Aufbau</h3>
 
