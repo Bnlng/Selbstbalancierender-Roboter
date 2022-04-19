@@ -108,7 +108,6 @@ Die Programmiersprache von Arduino basiert auf c++, verfügt aber über zusätzl
 ```c
 #include <Wire.h>
 #include <MPU6050_light.h>
-#include <ServoInput.h>
 #include <PID_v1.h>
 
 //Variablen für die PID Regelung
@@ -130,13 +129,6 @@ const int rechtsRueckwaertsPin = 9;
 MPU6050 mpu(Wire);
 unsigned long timer = 0;
 
-//fehrnsteuerung
-const int ThrottleSignalPin = 3;  // MUST be interrupt-capable!
-const int ThrottlePulseMin = 1000;  // microseconds (us)
-const int ThrottlePulseMax = 2000;  // Ideal values for your servo can be found with the "Calibration" example
-
-ServoInputPin<ThrottleSignalPin> throttle(ThrottlePulseMin, ThrottlePulseMax);
-
 void setup() {
   //MPU6050 starten
   Wire.begin();
@@ -151,18 +143,6 @@ void setup() {
 }
 
 void loop() {
-  
-  //Fehrnsteuerung
-  int throttlePercent = throttle.map(100, -100);
-
-  if (throttlePercent > 10) {
-    setpoint = map(throttlePercent, 10, 100, 0, 4);
-  }
-
-  if (throttlePercent < -10) {
-    setpoint = map(throttlePercent, -10, -100, 0, -4);
-  }
-  
   //MPU6050 Auslesen
   mpu.update();
   
@@ -207,7 +187,6 @@ Am Anfang des Sketches werden die Bibliotheken eingebunden und die Variablen def
 ```c
 #include <Wire.h>
 #include <MPU6050_light.h>
-#include <ServoInput.h>
 #include <PID_v1.h>
 ```
 
@@ -218,9 +197,6 @@ Zuerst müssen die verwendeten Programmbibliotheken (Libaries) eingebunden werde
 <br>
 <br>
 Die `MPU6050_light` Bibliotek dient dem Auslesen des Gyroskop, durch sie kann der relativ einfach mit einem Befehl der Neigunswinkel ermittelt werden. Außerdem ist Sofware zur Kallibrierung des Gyroskops enthalten. Sie kann unter https://github.com/rfetick/MPU6050_light runtergeladen werden.
-<br>
-<br>
-Mit `ServoInput.h` lassen sich die Eingabewerte der Fehrnbedienung auslesen. Die Bibliothek kann unter https://github.com/dmadison/ServoInput heruntergeladen werden.
 <br>
 <br>
 Die `PID_v1.h` Bibliothek dient der verwendung einer PID Regelung ([Wikipedia](https://de.wikipedia.org/wiki/Regler#PID-Regler)). PID steht für Proportional, Integral und Derivative (deutsch: Derivative = Differential/Ableitung). Mit dieser Regelung lässt sich ermitteln, was die Motoren tun sollen, wenn der Roboter kippt. Sie funktioniert über folgender Formel: 
