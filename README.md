@@ -51,7 +51,7 @@ Video des CAD-Modelles:
 
 <h3 id="bauteile">Bauteile</h3>
 <h4>MPU6050</h4>
-Das MPU6050 Modul kombiniert einen Beschleunigungs- und Lagersensor in nur einem Chip. Durch das Nutzen des 3-Achsen Gyroskops verbunden mit dem 3-Achsen Beschleunigungssensor sind 6 Freiheitsgrade ermittelbar.
+Das MPU6050 Modul kombiniert einen Beschleunigungs- und Lagersensor in nur einem Chip. Durch das Nutzen des 3-Achsen Gyroskops verbunden mit dem 3-Achsen Beschleunigungssensor sind 6 Freiheitsgrade ermittelbar. Aus diesen drei Freiheitsgeraden kann in Kombination eine sehr genau Lagebestimmung des Chips statt finden. Der Beschleunigungssensor kann hier vergleichbar mit einer Wasserwage benutzt werden. Je neher der Beschleunigungswert der Senkrechten Achse an g (9,81 m/s^2) ist, je näher ist der Chip an der Waagerechten. Mit dem Gyroskop kann die Winkelbeschleunigung gemessen werden, also wie stark sich der Chip um eine der drei Achsen dreht. Aus diesen Daten kann dann die aktuelle Neigung relativ zur Lage die der Chip beim Start des Programms hatte, bestimmt werden.
 
 <h4>BTS7960</h4>
 Bei diesem Bauteil handelt es sich um einen Leistungsstarken H-Brücken Motortreiber für Gleichstrommotoren. Dieses ist in der Lage den angeschlossenen Motor in beide Richtungen rotieren zu lassen, ihn also umzupolen. Der Controller kann Spitzenströmen von bis zu 43A stand halten und kommt so auf eine kurzzeitige Leistungfähigkeit von bis zu 1.150 W .
