@@ -318,9 +318,13 @@ void loop() {
 Dieser Teil gibt die Outputwerte, die eben berechnet worden sind an die Motoren weiter. Die erste `if` Anweisung überprüft, ob Output größer als null ist. Wenn das der Fall ist, dann schaltetet der Arduino die beiden Pins die die Vorwärtsbewegung auf Null und die Pins, die die Motoren rückwärts drehen lassen werden werden mit Output = Intensität eingeschaltet.
 
 Die `else if` Anweisung überprüft, ob Output kleiner als 0 ist. Wenn das der Fall ist, dann werden diesmal die Pins zu Rückwärtsbewegung ausgeschaltet und die für die Vorwärtsbewegung eingeschaltet. Die Intensität ergibt sich dabei aus `-1 * Output`, da Output negativ ist, wir aber einen Positiven Wert brauchen.
+
 <dr>
+
 <dr>
+
 <dr>
+
 Dieser Code funktioniert zwar, allerdings ist der Roboter dabei nicht ganz so stabil wie wir uns es erhofft hatten. Daher haben wir auch mal einen Fertigen Code aus dem Internet getestet, welcher wie sich herausstellte etwas besser funktionierte. Daher haben wir Vor diesen Code für die Vorstellung im Unterricht zu verwenden. Da wir den Roboter auch noch fernsteuern wollten haben wir in den Code aus dem Internet zusätzlich eine Funktion zur Fernsteuerung eingebaut. Hierbei mussten wir feststellen, dass das implementieren von eigenem Code in fremder Software recht kompliziert ist. Trotzdem haben wir es am Ende geschafft.
 
 <details>
