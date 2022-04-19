@@ -660,3 +660,44 @@ void loop() {
 }
 	
 ```
+Aus diesem Libary Beispielcode die relevanten Teile heraus gepickt. Auf dem Arduino Nr.2 läuft folgender Code:
+
+```c
+#include <ServoInput.h>
+
+// Throttle Setup
+const int ThrottleSignalPin = 3;  // MUST be interrupt-capable!
+const int ThrottlePulseMin = 1000;  // microseconds (us)
+const int ThrottlePulseMax = 2000;  // Ideal values for your servo can be found with the "Calibration" example
+
+ServoInputPin<ThrottleSignalPin> throttle(ThrottlePulseMin, ThrottlePulseMax);
+
+
+int outputValue = 0;
+const int OutputPin1 = 5;
+const int OutputPin2 = 6;
+
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(9600);
+pinMode(OutputPin1, OUTPUT);
+pinMode(OutputPin2, OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+int throttlePercent = throttle.map(-100, 100);
+
+ if (throttlePercent > 20){
+  digitalWrite(OutputPin1, HIGH);
+ }
+
+ if (throttlePercent < -20) {
+  digitalWrite(OutputPin2, HIGH);
+ }
+ if (throttlePercent < 20 && throttlePercent > -20){
+    digitalWrite(OutputPin2, LOW);
+     digitalWrite(OutputPin1, LOW);
+ }
+}
+```
