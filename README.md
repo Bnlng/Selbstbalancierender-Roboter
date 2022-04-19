@@ -24,9 +24,17 @@ Die meisten ferngesteuerten Fahrzeuge haben drei oder mehr Räder. Daher dachten
 Bei unserem diesjährigen Informatikprojekt handelt es sich abermals um ein Physical-Computing Projekt. Das Ergebnis ist ein 44cm Breiter und 9Kg schwerer Roboter, welcher auf seinen zwei 16,5 cm großen Räder graziel aufrecht balanciert. Dank den zwei leistungsstarken Lithium-Polymer-Akkus und zwei drehmomentstarken Bürstenmotoren verfügt unser Roboter über eine hohe Reichweite und üppige Leistungsreserven, welche auch den Transport von Zusätzlicher Last denkbar machen. Außerdem kann die Riemenspannung und der parallellauf der der Zahnriemenräder genau eingestellt wereden, um ein geräuch- und verschleißarmes Arbeiten zu garantieren. Die 2,4 GHz Pistolengriff-Fernsteuerung ermöglicht eine leichte aber dennoch präzise Steuerung auch in schwierigem Gelände.
 <br>
 <br>
-3D Modell des Roboters:
+Video des CAD-Modelles:
 <br>
 <br>
+
+[![IMAGE ALT TEXT HERE](https://user-images.githubusercontent.com/88385986/164077442-14f3d44b-9973-4fd8-92ba-936916b78f8a.png)](https://www.youtube.com/watch?v=AILGkgTYkng)
+
+
+
+
+
+
 
 ![Informatik 2  Halbjahr v28](https://user-images.githubusercontent.com/88385986/163799663-b83478d5-fcf9-4b11-82d3-8f03084c468b.png)
 
