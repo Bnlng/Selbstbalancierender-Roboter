@@ -329,7 +329,9 @@ Dieser Code funktioniert zwar, allerdings ist der Roboter dabei nicht ganz so st
 
     <h3> Funktion der Fernsteuerung </h3>
     Die Output Signale der Fernsteuerung sind leider keine einfachen Spannungswerte, sondern sogenannte Interrupt-Signale. Diese Funtionieiren über einen periodischen Spannungsanstieg. Dieser Spannungsanstieg ist, wenn an der Fernbedinung kein Regler betätigt wird, 1,5 ms lang. Für einen Vollen Ausschlag eines Regler steigt diese Zeit auf 2ms und für einen Ausschlag in die andere Rcihtung, sinkt sie auf 1ms. Für die Umrechnung dieser Signale in einfache Zahlenwerte haben wir eine Libary genutzt. Im folgend ist der Code dieser Libary zu sehen.
+	
     ```c
+	
     #include <ServoInput.h>
 
 
@@ -378,7 +380,10 @@ void loop() {
 
 	Serial.println();
 }
+	
     ```
+	
+	
 <details>
     <summary>Code</summary>
 
