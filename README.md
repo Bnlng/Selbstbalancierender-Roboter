@@ -64,28 +64,6 @@ Bei der Fernsteuerung handelt es sich um eine Pistolengriff-Fernsteuerung für d
 <h3 id="aufbau">Aufbau</h3>
 
 
-
-
-<h4>Arduino</h4>
-
-Arduino ist eine Open Source Physical-Computing-Plattform. Es handelt sich um einen Microcontroller mit mehreren analogen und digitalen Ein und Ausgängen. Dieser ist das Herzstück unseres Projektes und für die Verarbeitung der Steuersignale und später für das Steuern des Gegnerflugzeuges und das Punktezählen zuständig.
-
-<h4>MPU 6050</h4>
-
-
-<h4>DC-Motor-Treiber</h4>
-
-Hierbei handelt es sich um den BTS7960B. Dieser ermöglicht die Steuerung von zwei Gleichstrommotoren. Also die Änderung von Drehrichtung und Geschwindigkeit.
-
-<h4>DC-Motoren</h4>
-
-
-<h4>Akkus</h4>
-
-
-<h4>3D-Gedruckte Komponenten</h4>
-
-
 <h3 id="schaltplan">Schaltplan</h3>
 
 ![Schaltplan](https://user-images.githubusercontent.com/88385986/163812863-497f506b-6a97-4490-a7d8-ff0faf9adc85.png)
@@ -106,13 +84,13 @@ Die Programmiersprache von Arduino basiert auf c++, verfügt aber über zusätzl
 #include <ServoInput.h>
 #include <PID_v1.h>
 
-//Variablen für die PID Steuerung
+//Variablen für die PID Regelung
 double Setpoint, Input, Output;
 
-//Parameter zur Feinjustierung der PID Steuerung
+//Parameter zur Feinjustierung der PID Regelung
 double Kp=4, Ki=4.5, Kd=0.01;
 
-//Verlinkt die Variablen mit dem PID Steuerung und gibt die Parameter weiter
+//Verlinkt die Variablen mit dem PID Regelung und gibt die Parameter weiter
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 
 //Pin Belegung
@@ -138,7 +116,7 @@ void setup() {
   byte status = mpu.begin();
   mpu.calcOffsets();
   
-  //PID Steuerung starten
+  //PID Regelung starten
   Input = mpu.getAngleX();
   Setpoint = 0;
   myPID.SetMode(AUTOMATIC);
@@ -162,7 +140,7 @@ void loop() {
   //MPU6050 Auslesen
   mpu.update();
   
-  //Winkel mit der PID Steuerung zu einem Output wert für die Motoren umrechnen
+  //Winkel mit der PID Regelung zu einem Output wert für die Motoren umrechnen
   Input = mpu.getAngleX();
   myPID.Compute();
   
@@ -232,25 +210,25 @@ Die `PID_v1.h` Bibliothek dient der verwendung einer PID Regelung ([Wikipedia](h
 Die `PID_v1.h` Bibliothek kann unter https://github.com/br3ttb/Arduino-PID-Libraryheruntergeladen werden.
 
 
-<h4>1.2 Variablen für die PID Steuerung</h4>
+<h4>1.2 Variablen für die PID Regelung</h4>
 
 ```c
-//Variablen für die PID Steuerung
+//Variablen für die PID Regelung
 double Setpoint, Input, Output;
 
-//Parameter zur Feinjustierung der PID Steuerung
+//Parameter zur Feinjustierung der PID Regelung
 double Kp=4, Ki=4.5, Kd=0.01;
 
-//Verlinkt die Variablen mit der PID Steuerung und gibt die Parameter weiter
+//Verlinkt die Variablen mit der PID Regelung und gibt die Parameter weiter
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 ```
-Hier werden die Variablen und für die PID Steuerung erstellt und mit der PID Libary verknüpft.
+Hier werden die Variablen und für die PID Regelung erstellt und mit der PID Libary verknüpft.
 
-`double Setpoint, Input, Output;` erstellt Variablen, die später im Code noch gebraucht werden, um die PID Steuerung zu verwenden.
+`double Setpoint, Input, Output;` erstellt Variablen, die später im Code noch gebraucht werden, um die PID Regelung zu verwenden.
 
 `double Kp=10, Ki=40, Kd=0.4;` erstellt die Variablen zur Feinjustierung der PID Steurung und weist ihnen Werte zu. Die Werte, Die für Kp, Ki und Kd eingetragen werdenn mussten experimentell ermittelt werden. Das Experimentelle ermitteln läuft so ab, dass zuerst alle Werte auf Null gesetzt werden und dann Kp in kleinen schritten erhöht wird, biss der Roboter fast von alleine stehen bleibt, aber noch stark hin und her schwankt. Dann erhöht man Ki solange, bis der Roboter von alleine Stehenbleibt, aber noch stark hin und her wakelt. Dann erhöht man Kd langsam, um das starke hin und her wakeln zu unterbinden. Falls es dann noch noch immer nicht ruhig steht, dann dreht man noch etwas weiter an den Werten herum, bis es funktioniert.
 
-`PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);` verlinkt die Variablen mit dem PID Steuerung, sodass wenn sie Später geändert werden diese änderung auch in der PID Bibliothek vorgenommen wird. Außerdem werden die eben genannten Parameter an die PID Bibliothek weitergegeben.
+`PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);` verlinkt die Variablen mit dem PID Regelung, sodass wenn sie Später geändert werden diese änderung auch in der PID Bibliothek vorgenommen wird. Außerdem werden die eben genannten Parameter an die PID Bibliothek weitergegeben.
 
 
 <h4>1.3 Pins definieren</h4>
@@ -285,7 +263,7 @@ void setup() {
   byte status = mpu.begin();
   mpu.calcOffsets();
   
-  //PID Steuerung starten
+  //PID Regelung starten
   Input = mpu.getAngleX();
   Setpoint = 0;
   myPID.SetMode(AUTOMATIC);
@@ -303,7 +281,7 @@ void loop() {
   //MPU6050 Auslesen
   mpu.update();
   
-  //Winkel mit der PID Steuerung zu einem Output Wert für die Motoren umrechnen
+  //Winkel mit der PID Regelung zu einem Output Wert für die Motoren umrechnen
   Input = mpu.getAngleX();
   myPID.Compute();
   
