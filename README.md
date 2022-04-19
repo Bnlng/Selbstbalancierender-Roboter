@@ -59,16 +59,21 @@ Bei diesem Bauteil handelt es sich um einen Leistungsstarken H-Brücken Motortre
 ![310px-H_bridge svg](https://user-images.githubusercontent.com/88385986/144763248-f9dd9373-5276-48ae-a490-cbb7d415482a.png)
 
 <h4> Arduino Nano </h4>
-Arduino ist eine Open Source Physical-Computing-Plattform. Es handelt sich um einen Microcontroller mit mehreren analogen und digitalen Ein und Ausgängen. Dieser ist das Herzstück unseres Projektes und für die Verarbeitung der Steuersignale und später für das Steuern des Gegnerflugzeuges und das Punktezählen zuständig.
+Arduino ist eine Open Source Physical-Computing-Plattform. Es handelt sich um einen Microcontroller mit mehreren analogen und digitalen Ein und Ausgängen. Dieser ist das Herzstück unseres Projektes und für die Verarbeitung der Signale des Gyruskops und des Receivers und die Ausgabe von Steuersignalen an die Motortreiber zuständig.
 
 <h4>Fernsteuerung + Receiver</h4>
 Bei der Fernsteuerung handelt es sich um eine Pistolengriff-Fernsteuerung für den Modellbau der Marke Reely. Das Modell zeichnet sich vor allem durch seinen Geringen Preis aus. Die Genaue funktion des Ausgangssignals und das Zusammenarbeiten mit dem Arduino wird später noch genauer erläutert.
 
 <h4> LiPo Akkus</h4>
+Für die Stromversorgung unseres Roboters sind zwei 3-Zellen Lithium Polymer Akkus mit einer Kapazität von jeweils 5000mAh zuständig. In reihe geschaltet würde man so auf eine Spannung von 25V kommen. Allerdings ist die Motorleistung mit nur 12,5V bereits völlig ausreichend, weshalb die Akkus in Pallelschaltung verwendet werden. LiPo-Akkus zeichnen sich durch ihr sehr gutes Gewichts-Kapazitätsverhätnis aus, sowie durch äußerst hohe Entladeströme.
+
 
 <h4> Motoren</h4>
+Die Motoren für unserern Roboter stammen aus der Altmetallkiste einer Gabelstablerwerkstatt. Ursprünglich waren sie als Lüftermotoren gedacht.
+Es handelt sich um einfache Bürsten-Gleichstrommotoren.
  
 <h4> Riemen + Riemenscheiben</h4>
+
 
 <h4> Räder</h4>
 
