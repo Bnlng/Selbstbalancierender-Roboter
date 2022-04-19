@@ -35,12 +35,7 @@ Video des Roboters in Action:
 
 
 
-<details>
-    <summary>Bild des 3D Modells</summary>
-
-![Informatik 2  Halbjahr v28](https://user-images.githubusercontent.com/88385986/163799663-b83478d5-fcf9-4b11-82d3-8f03084c468b.png)
-
-</details>
+[![IMAGE ALT TEXT HERE](https://cdn.discordapp.com/attachments/836887245268844594/966054547468464199/Untitled.jpg)](https://www.youtube.com/watch?v=AILGkgTYkng)
 
 
 
