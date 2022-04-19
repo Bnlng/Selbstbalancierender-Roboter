@@ -83,6 +83,8 @@ Der Rahmen wurde Hauptsächlich aus Flachstählen gefertigt. Der einfache Bausta
 
 ![Circuit design Ingenious Blorr _ Tinkercad - Mozilla Firefox 19 04 2022 21_43_18](https://user-images.githubusercontent.com/88385986/164083552-35b890f5-facc-49da-8c51-a5c79b7247e4.png)
 
+<h3> Erklärung der Elektrik: </h3>
+
 
 <h2 id="software">Software</h2>
 
