@@ -95,7 +95,7 @@ Hierbei handelt es sich um den BTS7960B. Dieser ermöglicht die Steuerung von zw
 
 <h2 id="software">Software</h2>
 
-Die Programmiersprache von Arduino basiert auf c++, verfügt aber über zusätzliche befehle, genaueres über die Sprache kann hier nachgelesen werden. Der gesamte Sketch wird im Folgenden Schritt für Schritt erklärt, kann aber auch in den Dateien des Repositorys ohne Erklärungen und mit Erklärungen eingesehen und heruntergeladen werden.
+Die Programmiersprache von Arduino basiert auf c++, verfügt aber über zusätzliche befehle, genaueres über die Sprache kann [hier](https://www.arduino.cc/reference/de/) nachgelesen werden. Der gesamte Sketch wird im Folgenden Schritt für Schritt erklärt.
 
 <details>
     <summary>Gesamter Sketch</summary>
@@ -136,7 +136,7 @@ void setup() {
   //MPU6050 starten
   Wire.begin();
   byte status = mpu.begin();
-  mpu.calcOffsets(); // gyro and accelero
+  mpu.calcOffsets();
   
   //PID Steuerung starten
   Input = mpu.getAngleX();
@@ -194,9 +194,11 @@ void loop() {
 
 <h3>Schritt für Schritt Erklärung</h3>
 
-<h4>1. Variablen Deklarieren</h4>
+<h4>1. Bibliotheken einbinden und Variablen Deklarieren</h4>
 
-<h4>1.1 Libaries einbinden</h4>
+Am Anfang des Sketches werden die Bibliotheken eingebunden und die Variablen definiert damit später im Gesamten Code darauf zugegriffen werden kann.
+
+<h4>1.1 Bibliotheken einbinden</h4>
 
 ```c
 #include <Wire.h>
@@ -242,6 +244,7 @@ double Kp=4, Ki=4.5, Kd=0.01;
 //Verlinkt die Variablen mit der PID Steuerung und gibt die Parameter weiter
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 ```
+Hier werden die Variablen und für die PID Steuerung erstellt und mit der PID Libary verknüpft.
 
 `double Setpoint, Input, Output;` erstellt Variablen, die später im Code noch gebraucht werden, um die PID Steuerung zu verwenden.
 
@@ -280,7 +283,7 @@ void setup() {
   //MPU6050 starten
   Wire.begin();
   byte status = mpu.begin();
-  mpu.calcOffsets(); // gyro and accelero
+  mpu.calcOffsets();
   
   //PID Steuerung starten
   Input = mpu.getAngleX();
