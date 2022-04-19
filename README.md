@@ -77,9 +77,7 @@ Bei der Fernsteuerung handelt es sich um eine Pistolengriff-Fernsteuerung für d
 
 <h3 id="schaltplan">Schaltplan</h3>
 
-![Schaltplan](https://user-images.githubusercontent.com/88385986/163812863-497f506b-6a97-4490-a7d8-ff0faf9adc85.png)
-
-
+![Circuit design Ingenious Blorr _ Tinkercad - Mozilla Firefox 19 04 2022 21_43_18](https://user-images.githubusercontent.com/88385986/164083359-1807c0ec-5c9c-40bf-8ee6-a45db0a9de1e.png)
 
 
 <h2 id="software">Software</h2>
