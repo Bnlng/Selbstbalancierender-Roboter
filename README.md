@@ -35,9 +35,12 @@ Video des CAD-Modelles:
 
 
 
+<details>
+    <summary>Bild des 3D Modells</summary>
 
 ![Informatik 2  Halbjahr v28](https://user-images.githubusercontent.com/88385986/163799663-b83478d5-fcf9-4b11-82d3-8f03084c468b.png)
 
+</details>
 
 
 
