@@ -36,9 +36,6 @@ Bei unserem diesjährigen Informatikprojekt handelt es sich abermals um ein Phys
 
 
 
-
-
-
 <h2 id="hardware">Hardware</h2>
 
 <h3 id="bauteile">Bauteile</h3>
@@ -120,7 +117,6 @@ void setup() {
   mpu.calcOffsets();
   
   //PID Regelung starten
-  Input = mpu.getAngleX();
   Setpoint = 0;
   myPID.SetMode(AUTOMATIC);
   myPID.SetSampleTime(10);
@@ -267,7 +263,6 @@ void setup() {
   mpu.calcOffsets();
   
   //PID Regelung starten
-  Input = mpu.getAngleX();
   Setpoint = 0;
   myPID.SetMode(AUTOMATIC);
   myPID.SetSampleTime(10);
@@ -275,7 +270,7 @@ void setup() {
 }
 ```
 
-Dieser Teil des Sketches wird nur ein einziges Mal beim Starten des Arduinos ausgeführt. `Wire.begin();`
+Dieser Teil des Sketches wird nur ein einziges Mal beim Starten des Arduinos ausgeführt. `Wire.begin();` Startet die Wire Libary, die die die datenübertragung durch I²C ermöglicht. `byte status = mpu.begin();` Startet die Libary, mit der der Winkel des Roboters ausgelesen wird und `mpu.calcOffsets();` sorgt dann dafür, dass die Libary das Gyroskop Nullen, sodass der ausgegebene Winkel während der Roboter aufrecht steht Null ist. Unter //PID Regelung starten weitere einstellungen für die PID Regelung festgelegt. `Setpoint = 0;` sorgt dafür, dass der durch die PID Regelung angestrebte Winkel Null grad ist (Roboter Aufrecht). `myPID.SetMode(AUTOMATIC);` stellt den Regler auf Automatisch statt Manuell und `myPID.SetSampleTime(10);` stellt die Zeitintervalle (in ms) ein, in denen die PID Libary Outputwerte berechnet. `myPID.SetOutputLimits(-255, 255);` stellt den Bereich in dem die Outputwerte sind ein. Wir haben -255 bis 255 gewählt, da wir so die Richtung in die sich die Räder drehen sollen mit dem Vorzeichen mitgeteilt bekommen und dann mit dem Betrag des Outputs den Wert für den Motore haben, den wir brauchen
 
 <h4>3. loop()</h4>
 
