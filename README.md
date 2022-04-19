@@ -318,3 +318,5 @@ void loop() {
 Dieser Teil gibt die Outputwerte, die eben berechnet worden sind an die Motoren weiter. Die erste `if` Anweisung überprüft, ob Output größer als null ist. Wenn das der Fall ist, dann schaltetet der Arduino die beiden Pins die die Vorwärtsbewegung auf Null und die Pins, die die Motoren rückwärts drehen lassen werden werden mit Output = Intensität eingeschaltet.
 
 Die `else if` Anweisung überprüft, ob Output kleiner als 0 ist. Wenn das der Fall ist, dann werden diesmal die Pins zu Rückwärtsbewegung ausgeschaltet und die für die Vorwärtsbewegung eingeschaltet. Die Intensität ergibt sich dabei aus `-1 * Output`, da Output negativ ist, wir aber einen Positiven Wert brauchen.
+
+                       
