@@ -89,9 +89,7 @@ Die zwei Motorcontroller werden parallel an den Akku geschaltet. Ein Controller 
 Wichtig ist, dass der Arduino und die Motorcontroller am gleichen Ground angeschlossen sind, also das gleich 0-Potenzial haben.
 <br>
 Das MPU6050 Modul übermittelt die Daten über einen I2C Datenbus. Die Leitungen hierfür sind an den Pins A4 und A5 angeschlossen. Das Modul wird mit 5V Spannung versorgt.
-
 <br> 
-
 Die Spannungsversorgung für den Arduino wird durch eine 9V Blockbatterie gewährleistet. 
 <br> 
 Der 2. Arduino lößt auf recht unübliche Weise das Problem, dass der Arduino Nano nur 2 Pins hat, welche als Interrupt Pins genutzt werden können. Der eine dieser Pins, Pin 2, wird für den MPU6050 genutzt. Sobald dieser eine Änderung wahrnimmt, wird ein Interrupt an den Arduino gesendet. Der zweite Intterrupt Pin, Pin 3, ist für den Throttle Input der Fernbedienung belegt. Wie die Aufnahme des Signals des Receivers funktioniert, wird später noch erklärt. Nun wird noch ein 3. Interrupt-Pin benötigt, um den Receiver Output für die Lenkung aufzunehmen. Diese Arbeit übernimmt der zweit Arduino. Je nach dem ob nach links oder rechts gelenkt wird, wird einer der Outputpins 5 und & auf HIGH gezogen. Diese Outputpins des Arduino Nr.2 sind an den Pins 4 und 5 des main-Arduinos angeschlossen. 
