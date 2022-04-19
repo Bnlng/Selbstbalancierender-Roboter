@@ -28,7 +28,7 @@ Video des CAD-Modelles:
 <br>
 <br>
 
-[![IMAGE ALT TEXT HERE](https://user-images.githubusercontent.com/88385986/164077442-14f3d44b-9973-4fd8-92ba-936916b78f8a.png)](https://www.youtube.com/watch?v=AILGkgTYkng)
+[![IMAGE ALT TEXT HERE](https://media.discordapp.net/attachments/836887245268844594/966054547468464199/Untitled.jpg?width=1202&height=676)](https://www.youtube.com/watch?v=AILGkgTYkng)
 
 
 
