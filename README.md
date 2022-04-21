@@ -333,7 +333,7 @@ Die `else if` Anweisung überprüft, ob Output kleiner als 0 ist. Wenn das der F
 <dr>
 
 Dieser Code funktioniert zwar, allerdings ist der Roboter dabei nicht ganz so stabil wie wir uns es erhofft hatten. Daher haben wir auch mal einen Fertigen Code aus dem Internet getestet, welcher wie sich herausstellte etwas besser funktionierte. Daher haben wir vor diesen Code für die Vorstellung im Unterricht zu verwenden. Da wir den Roboter auch noch fernsteuern wollten haben wir in den Code aus dem Internet zusätzlich eine Funktion zur Fernsteuerung eingebaut. Hierbei mussten wir feststellen, dass das Implementieren von eigenem Code in fremder Software recht kompliziert ist. Trotzdem haben wir es am Ende geschafft.
-Der Fremdcode stammt von Aswinth Raj, und ist auf folgener Website zu finden: https://circuitdigest.com/microcontroller-projects/arduino-based-self-balancing-robot
+	Der Fremdcode stammt von <u>Aswinth Raj</u>, und ist auf folgener Website zu finden: https://circuitdigest.com/microcontroller-projects/arduino-based-self-balancing-robot
 
 <details>
     <summary>Der Code aus dem Internet</summary>
@@ -384,8 +384,7 @@ ServoInputPin<ThrottleSignalPin> throttle(ThrottlePulseMin, ThrottlePulseMax);
 
 float left = 1;
 float right = 1;
-float right1 = 1;
-float left1 = 1;
+
 
 const int leftIn = 4;
 const int rightIn = 5;
@@ -484,23 +483,20 @@ if (throttlePercent < 1 && throttlePercent > -1) {
    if (digitalRead(leftIn) == HIGH) {
      right = 1;
     left = 2;
-    right1 = 1;
-    left1 = 1;
+
   }
    
   if (digitalRead(rightIn) == HIGH) {
    left = 1;
      right = 2;
-       right1 = 1;
-    left1 = 1;
+    
    }
 
 
  if (digitalRead(leftIn) == LOW && digitalRead(rightIn) == LOW) {
    left = 1;
      right = 1;
-     left1 = 1;
-     right1 = 1;
+     
    }
    
    
