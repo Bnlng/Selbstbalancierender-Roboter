@@ -333,7 +333,7 @@ Die `else if` Anweisung überprüft, ob Output kleiner als 0 ist. Wenn das der F
 <dr>
 
 Dieser Code funktioniert zwar, allerdings ist der Roboter dabei nicht ganz so stabil wie wir uns es erhofft hatten. Daher haben wir auch mal einen Fertigen Code aus dem Internet getestet, welcher wie sich herausstellte etwas besser funktionierte. Daher haben wir vor diesen Code für die Vorstellung im Unterricht zu verwenden. Da wir den Roboter auch noch fernsteuern wollten haben wir in den Code aus dem Internet zusätzlich eine Funktion zur Fernsteuerung eingebaut. Hierbei mussten wir feststellen, dass das Implementieren von eigenem Code in fremder Software recht kompliziert ist. Trotzdem haben wir es am Ende geschafft.
-Der Fremdcode stammt von <ins> Aswinth Raj </ins> , und ist auf folgener Website zu finden: https://circuitdigest.com/microcontroller-projects/arduino-based-self-balancing-robot
+Der Fremdcode stammt von <ins> Aswinth Raj</ins>, und ist auf folgener Website zu finden: https://circuitdigest.com/microcontroller-projects/arduino-based-self-balancing-robot
 
 <details>
     <summary>Der Code aus dem Internet</summary>
@@ -602,7 +602,7 @@ void Stop() //Code to stop both the wheels
 
 <h3>Funktion der Fernsteuerung</h3>
 	
-Die Output Signale der Fernsteuerung sind leider keine einfachen Spannungswerte, sondern sogenannte Interrupt-Signale. Diese Funtionieiren über einen periodischen Spannungsanstieg. Dieser Spannungsanstieg ist, wenn an der Fernbedinung kein Regler betätigt wird, 1,5 ms lang. Für einen Vollen Ausschlag eines Regler steigt diese Zeit auf 2ms und für einen Ausschlag in die andere Rcihtung, sinkt sie auf 1ms. Für die Umrechnung dieser Signale in einfache Zahlenwerte haben wir eine Libary genutzt. Im folgend ist der Code dieser Libary zu sehen.
+Die Output Signale der Fernsteuerung sind leider keine einfachen Spannungswerte, sondern sogenannte Interrupt-Signale. Diese Funtionieiren über einen periodischen Spannungsanstieg. Dieser Spannungsanstieg ist, wenn an der Fernbedinung kein Regler betätigt wird, 1,5 ms lang. Für einen Vollen Ausschlag eines Regler steigt diese Zeit auf 2ms und für einen Ausschlag in die andere Rcihtung, sinkt sie auf 1ms. Für die Umrechnung dieser Signale in einfache Zahlenwerte haben wir eine Libary genutzt. Im folgend ist der Code dieser Libary zu sehen. Die Libary wurde von [Dave Madison]https://www.partsnotincluded.com/about/ programmiert.
 	
    
 ```c
