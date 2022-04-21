@@ -333,7 +333,7 @@ Die `else if` Anweisung überprüft, ob Output kleiner als 0 ist. Wenn das der F
 <dr>
 
 Dieser Code funktioniert zwar, allerdings ist der Roboter dabei nicht ganz so stabil wie wir uns es erhofft hatten. Daher haben wir auch mal einen Fertigen Code aus dem Internet getestet, welcher wie sich herausstellte etwas besser funktionierte. Daher haben wir vor diesen Code für die Vorstellung im Unterricht zu verwenden. Da wir den Roboter auch noch fernsteuern wollten haben wir in den Code aus dem Internet zusätzlich eine Funktion zur Fernsteuerung eingebaut. Hierbei mussten wir feststellen, dass das Implementieren von eigenem Code in fremder Software recht kompliziert ist. Trotzdem haben wir es am Ende geschafft.
-Der Fremdcode stammt von <u>Aswinth Raj</u> , und ist auf folgener Website zu finden: https://circuitdigest.com/microcontroller-projects/arduino-based-self-balancing-robot
+Der Fremdcode stammt von <u> Aswinth Raj </u> , und ist auf folgener Website zu finden: https://circuitdigest.com/microcontroller-projects/arduino-based-self-balancing-robot
 
 <details>
     <summary>Der Code aus dem Internet</summary>
